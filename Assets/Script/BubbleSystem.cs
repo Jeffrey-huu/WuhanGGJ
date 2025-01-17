@@ -6,7 +6,7 @@ public class BubbleSystem : MonoBehaviour
 
     private void Awake()
     {
-        // È·±£³¡¾°ÖÐÖ»ÓÐÒ»¸ö¸Ãµ¥ÀýµÄÊµÀý
+        // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -16,7 +16,7 @@ public class BubbleSystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // ÒÔÏÂÊÇµ¥ÀýÀàµÄÆäËû¹¦ÄÜº¯Êý£¬¿ÉÒÔ¸ù¾ÝÐèÒªÌí¼Ó
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Üºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
     public void DoSomething()
     {
         Debug.Log("Singleton is doing something.");

@@ -8,10 +8,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Map
   - Water
   - UI
-  - 
+  - BackGround
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: MsgBox
     uniqueID: 1153331859
+    locked: 0
+  - name: Map
+    uniqueID: 2610572013
     locked: 0

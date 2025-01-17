@@ -44,12 +44,15 @@ public class BubbleController : MonoBehaviour
         }
     }
 
+
+    //Control Signal - 1
     public void AddAsset(int num)
     {
         currentAsset += num;
         CheckValid();
     }
 
+    //Control Signal - 2
     public void DecreaseAsset(int num)
     {
         currentAsset -= num;
@@ -82,6 +85,14 @@ public class BubbleController : MonoBehaviour
         if (currentAsset > maxAssetLowerBound + additiveAsset)
         {
             isValid = false;
+            Debug.Log("GAME OVER");
         }
+    }
+
+    //平移到目标点
+    public void SmoothMove(Vector3 destination)
+    {
+        destination.z = 0;
+        transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 5);
     }
 }

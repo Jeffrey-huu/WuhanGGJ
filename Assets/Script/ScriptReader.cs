@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-
 // 脚本的内容格式
 [System.Serializable]
 public class ScriptData
