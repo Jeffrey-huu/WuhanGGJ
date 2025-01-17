@@ -1,0 +1,17 @@
+[
+  {
+    "content": "example1",
+    "control": 1,
+    "value": 10
+  },
+  {
+    "content": "example2",
+    "control": 2,
+    "value": 10
+  },
+  {
+    "content": "example3",
+    "control": 3,
+    "value": 10
+  }
+]
