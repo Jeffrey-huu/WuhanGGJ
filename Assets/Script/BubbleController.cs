@@ -20,7 +20,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private float pressStartTime = 0f;
     [SerializeField] private float maxPressDuration = 3.0f;
 
-    private int currentAsset = 0;
+    public int currentAsset = 0;
     private float lerpSpeed = 0.1f;
     private int additiveAsset;
 
