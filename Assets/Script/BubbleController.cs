@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class BubbleController : MonoBehaviour
+public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private SpriteRenderer sr;
     private Animator anim;
@@ -14,7 +16,12 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private int validRange = 100;
     [SerializeField] private float maxScale;
 
+    private bool isPressed = false;
+    private float pressStartTime = 0f;
+    [SerializeField] private float maxPressDuration = 3.0f;
+
     public int currentAsset = 0;
+
     private float lerpSpeed = 0.1f;
     private int additiveAsset;
 
@@ -109,5 +116,50 @@ public class BubbleController : MonoBehaviour
     {
         destination.z = 0;
         transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 5);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isPressed = true;
+        pressStartTime = Time.time;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (isPressed)
+        {
+            isPressed = false;
+            float longPressDuration = Time.time - pressStartTime;
+            longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
+            OnLongPress(longPressDuration);
+        }
+    }
+
+    protected virtual void OnLongPress(float duration)
+    {
+        SendLongPressDuration(duration);
+    }
+
+    private void SendLongPressDuration(float duration)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, results);
+        if (results.Count > 0)
+        {
+            foreach (RaycastResult result in results)
+            {
+                GameObject target = result.gameObject;
+                var asset = target.GetComponent<UI_Asset>();
+                if (asset != null)
+                {
+                    float useScale = duration / maxPressDuration;
+                    int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
+                    asset.AddAsset(usedAsset);
+                    DecreaseAsset(usedAsset);
+                }
+            }
+        }
     }
 }
