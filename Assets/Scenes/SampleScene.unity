@@ -2311,8 +2311,8 @@ MonoBehaviour:
   validRange: 100
   maxScale: 0.8
   maxPressDuration: 3
-  personAsset: 0
-  marketAsset: 0
+  personAsset: 15
+  marketAsset: 100
 --- !u!95 &1666036279
 Animator:
   serializedVersion: 5
