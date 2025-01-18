@@ -10,6 +10,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool isPressed = false;
     private float pressStartTime = 0f;
     static UI_Asset instance;
+    public EventManager eventManager;
 
     public RectTransform tr;
     //最大值时的y轴坐标和高度
@@ -21,7 +22,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // 用户当前资产
     [SerializeField] private int currentAsset = 1000;
     [SerializeField] private float maxPressDuration = 3.0f;
-    [SerializeField] private float targetAsset= 2000;
+    [SerializeField] private float targetAsset = 2000;
 
     void Awake()
     {
@@ -32,10 +33,10 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     void UpdateAnim()
     {
-        float height=(currentAsset/targetAsset)*maxH;
+        float height = (currentAsset / targetAsset) * maxH;
         // float height=Mathf.Lerp(tr.sizeDelta.x,(currentAsset/targetAsset)*maxH,Time.deltaTime*5);
-        float scale = (maxY-minY)/maxH;
-        float y =minY + height*scale;
+        float scale = (maxY - minY) / maxH;
+        float y = minY + height * scale;
         // float y = Mathf.Lerp(tr.anchoredPosition.y,minY + height*scale,Time.deltaTime*5);
         tr.anchoredPosition = new Vector2(tr.anchoredPosition.x, y);
         tr.sizeDelta = new Vector2(tr.sizeDelta.x, height);
@@ -60,9 +61,9 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void AddAsset(int num)
     {
-        currentAsset = (int)Mathf.Clamp(currentAsset+num,0,targetAsset);
+        currentAsset = (int)Mathf.Clamp(currentAsset + num, 0, targetAsset);
         UpdateAnim();
-        if(currentAsset > targetAsset)
+        if (currentAsset > targetAsset)
         {
             Debug.Log("Game WIN!!!");
         }
@@ -70,7 +71,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void DecreaseAsset(int num)
     {
-        currentAsset = (int)Mathf.Clamp(currentAsset-num,0,targetAsset);
+        currentAsset = (int)Mathf.Clamp(currentAsset - num, 0, targetAsset);
         UpdateAnim();
     }
 
@@ -100,6 +101,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 int eventindex = eventController.eventindex;
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
+                eventManager.AddAssetToEvent(eventindex, usedAsset);
                 DecreaseAsset(usedAsset);
             }
         }

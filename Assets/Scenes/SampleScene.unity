@@ -1702,8 +1702,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 411877859}
+  tr: {fileID: 0}
+  maxY: -175
+  minY: -515
+  maxH: 720
   currentAsset: 1000
   maxPressDuration: 3
+  targetAsset: 2000
 --- !u!1 &1324447487
 GameObject:
   m_ObjectHideFlags: 0
