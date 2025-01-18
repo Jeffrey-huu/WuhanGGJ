@@ -27,19 +27,32 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         tr = GetComponent<RectTransform>();
         instance = this;
+    }
+
+    private void FixedUpdate()
+    {
         UpdateAnim();
     }
 
     void UpdateAnim()
     {
-        float height=(currentAsset/targetAsset)*maxH;
-        // float height=Mathf.Lerp(tr.sizeDelta.x,(currentAsset/targetAsset)*maxH,Time.deltaTime*5);
-        float scale = (maxY-minY)/maxH;
-        float y =minY + height*scale;
-        // float y = Mathf.Lerp(tr.anchoredPosition.y,minY + height*scale,Time.deltaTime*5);
-        tr.anchoredPosition = new Vector2(tr.anchoredPosition.x, y);
-        tr.sizeDelta = new Vector2(tr.sizeDelta.x, height);
+        float height = (currentAsset / targetAsset) * maxH;
+
+        // 使用Lerp平滑过渡并更新整个sizeDelta
+        float newWidth = tr.sizeDelta.x;  // 保持当前宽度不变
+        float newHeight = Mathf.Lerp(tr.sizeDelta.y, height, Time.deltaTime * 5);
+        tr.sizeDelta = new Vector2(newWidth, newHeight);  // 更新整个sizeDelta
+
+        // 计算目标y位置
+        float scale = (maxY - minY) / maxH;
+        float targetY = minY + height * scale;
+
+        // 使用Lerp平滑过渡并更新整个anchoredPosition
+        float newX = tr.anchoredPosition.x;  // 保持当前x位置不变
+        float newY = Mathf.Lerp(tr.anchoredPosition.y, targetY, Time.deltaTime * 5);
+        tr.anchoredPosition = new Vector2(newX, newY);  // 更新整个anchoredPosition
     }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -61,7 +74,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void AddAsset(int num)
     {
         currentAsset = (int)Mathf.Clamp(currentAsset+num,0,targetAsset);
-        UpdateAnim();
+
         if(currentAsset > targetAsset)
         {
             Debug.Log("Game WIN!!!");
@@ -71,7 +84,6 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void DecreaseAsset(int num)
     {
         currentAsset = (int)Mathf.Clamp(currentAsset-num,0,targetAsset);
-        UpdateAnim();
     }
 
     protected virtual void OnLongPress(float duration)
