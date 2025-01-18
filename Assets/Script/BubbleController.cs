@@ -14,7 +14,7 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private int validRange = 100;
     [SerializeField] private float maxScale;
 
-    private int currentAsset = 0;
+    public int currentAsset = 0;
     private float lerpSpeed = 0.1f;
     private int additiveAsset;
 
@@ -24,7 +24,7 @@ public class BubbleController : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        
+
         additiveAsset = Random.Range(0, validRange);
         transform.localScale = new Vector3(initialScale, initialScale, initialScale);
         Debug.Log(additiveAsset);
