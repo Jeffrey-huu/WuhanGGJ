@@ -236,8 +236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c8a437f1fa9324b80e75b8e9158be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiIntro: {fileID: 8300000, guid: bc5f59b7158608044b20c334dba170b5, type: 3}
-  BgSound: {fileID: 8300000, guid: bdf29dde96f77ca489b030a516612b5c, type: 3}
+  introSound: {fileID: 8300000, guid: c0c7d739516be1a4fbab9f1bdb1c4041, type: 3}
+  bubbleIdleSound: {fileID: 8300000, guid: ea8c347e53b91ed459e2fe6010b2aa04, type: 3}
+  bubbleFastIdleSound: {fileID: 8300000, guid: 423c715115ab72747a5f3ed26174062c, type: 3}
+  bubbleNearBurstSound: {fileID: 8300000, guid: b271a4876af9fc248aceb586b1e155f4, type: 3}
+  successSound: {fileID: 8300000, guid: 81e6eaf7dd9a82d49bbd632d67bfa660, type: 3}
+  failSound: {fileID: 8300000, guid: 9a4ce1a1876794246a7d8308e5ad5d38, type: 3}
 --- !u!82 &103269425
 AudioSource:
   m_ObjectHideFlags: 0
