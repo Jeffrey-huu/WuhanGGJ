@@ -31,12 +31,7 @@ public class EventUIManager : MonoBehaviour
                 Debug.Log(i);
                 GameObject eventButton = Instantiate(eventpre, eventgroup.transform);
                 eventButton.GetComponentInChildren<TextMeshProUGUI>().text = eventmanager.eventarr[i].name;
-                int index = i;
-                eventButton.GetComponent<Button>().onClick.AddListener(
-                delegate
-                {
-                    OnEventClick(index);
-                });
+                eventButton.GetComponent<EventController>().eventindex = i;
                 count++;
             }
             i++;

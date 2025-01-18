@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private bool isPressed = false;
     private float pressStartTime = 0f;
+    public EventManager eventManager;
     [SerializeField] private int currentAsset = 1000;
     [SerializeField] private float maxPressDuration = 3.0f;
 
@@ -26,10 +28,10 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    // ³¤°´´¥·¢µÄ²Ù×÷
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
     protected virtual void OnLongPress(float duration)
     {
-        // ·¢ËÍ³¤°´³ÖÐøÊ±¼ä¸ø BubbleController
+        // ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ BubbleController
         SendLongPressDurationToBubbleController(duration);
     }
 
@@ -46,6 +48,15 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
                 bubbleController.AddAsset(usedAsset);
+                currentAsset -= usedAsset;
+            }
+            EventController eventController = target.GetComponent<EventController>();
+            if (eventController != null)
+            {
+                int eventindex = eventController.eventindex;
+                float useScale = duration / maxPressDuration;
+                int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
+                eventManager.AddAssetToEvent(eventindex, usedAsset);
                 currentAsset -= usedAsset;
             }
         }
