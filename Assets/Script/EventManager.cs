@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class EventManager : MonoBehaviour
     public int finishedNum = 0;
     public UI_Asset uI_Asset;
     public BubbleController bubbleController;
+
+    public GameObject eventgroup;
+    public float alpha = 0.5f;
 
     void Start()
     {
@@ -27,8 +31,22 @@ public class EventManager : MonoBehaviour
     }
     public void AddAssetToEvent(int eventindex, int asset)
     {
-        if (eventarr[eventindex].isfinished == false)
+        if (eventarr[eventindex].isfinished == true)
         {
+            return;
+        }
+        else
+        {
+            foreach (Transform _event in eventgroup.transform)
+            {
+                if (_event.GetComponent<EventController>().eventindex == eventindex)
+                {
+                    Image image = _event.GetComponentInChildren<Image>();
+                    Color grayColor = Color.gray;
+                    grayColor.a = alpha;
+                    image.color = grayColor;
+                }
+            }
             eventarr[eventindex].isfinished = true;
             finishedNum++;
         }
@@ -104,7 +122,6 @@ public class EventManager : MonoBehaviour
         {
             EmotionBar.instance.AddEmotion((int)(0.05 * asset));
         }
-
 
     }
     public void EventOccur(int eventindex)
