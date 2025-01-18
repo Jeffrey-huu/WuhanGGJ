@@ -6,7 +6,6 @@ public class BubbleSystem : MonoBehaviour
 
     private void Awake()
     {
-        // ȷ��������ֻ��һ���õ�����ʵ��
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -16,7 +15,6 @@ public class BubbleSystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // �����ǵ�������������ܺ��������Ը�����Ҫ����
     public void DoSomething()
     {
         Debug.Log("Singleton is doing something.");

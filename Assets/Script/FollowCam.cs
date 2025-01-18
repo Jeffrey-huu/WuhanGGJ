@@ -10,7 +10,7 @@ public class FollowCam : MonoBehaviour
 
     void Awake()
     {
-        instance=this;
+        instance = this;
         cameraZ = transform.position.z;
     }
 
@@ -23,6 +23,11 @@ public class FollowCam : MonoBehaviour
     //平滑跟随target
     void FixedUpdate()
     {
+        if (target == null)
+        {
+            return;
+        }
+
         Vector3 destination = target.transform.position;
         destination.z = cameraZ;
         transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 5);

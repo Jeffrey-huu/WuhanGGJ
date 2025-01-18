@@ -18,7 +18,7 @@ public class BubbleController : MonoBehaviour
     private float lerpSpeed = 0.1f;
     private int additiveAsset;
 
-    private bool isValid = true;
+    private bool isNearBurst = false;
 
     void Start()
     {
@@ -38,12 +38,28 @@ public class BubbleController : MonoBehaviour
 
     private void Update()
     {
-        if (!isValid)
-        {
-            Destroy(gameObject);
-        }
+        CheckIsNearBurst();
     }
 
+    private void BubbleAnimationTrigger()
+    {
+        Destroy(gameObject);
+    }
+
+    private void CheckIsNearBurst()
+    {
+        if (!isNearBurst && currentAsset >= maxAssetLowerBound)
+        {
+            isNearBurst = true;
+            anim.SetBool("isNearBurst", isNearBurst);
+        }
+
+        if (isNearBurst && currentAsset < maxAssetLowerBound)
+        {
+            isNearBurst = false;
+            anim.SetBool("isNearBurst", isNearBurst);
+        }
+    }
 
     //Control Signal - 1
     public void AddAsset(int num)
@@ -84,8 +100,7 @@ public class BubbleController : MonoBehaviour
 
         if (currentAsset > maxAssetLowerBound + additiveAsset)
         {
-            isValid = false;
-            Debug.Log("GAME OVER");
+            anim.SetBool("isBurst", true);
         }
     }
 
