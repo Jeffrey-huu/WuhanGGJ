@@ -20,7 +20,10 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private float pressStartTime = 0f;
     [SerializeField] private float maxPressDuration = 3.0f;
 
-    public int currentAsset = 0;
+    public int currentAsset => personAsset + marketAsset;
+    public int personAsset = 0;
+    public int marketAsset = 0;
+
     private float lerpSpeed = 0.1f;
     private int additiveAsset;
 
@@ -84,7 +87,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     //Control Signal - 1
     public void AddAsset(int num)
     {
-        currentAsset += num;
+        personAsset += num;
         AudioManage();
         CheckValid();
     }
@@ -92,7 +95,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     //Control Signal - 2
     public void DecreaseAsset(int num)
     {
-        currentAsset -= num;
+        personAsset -= num;
         AudioManage();
         CheckValid();
     }

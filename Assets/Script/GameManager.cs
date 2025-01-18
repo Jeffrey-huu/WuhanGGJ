@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public EventUIManager eventUIManager;
+    public EventManager eventManager;
     public int RoundNum;
     void Start()
     {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("next turn");
         eventUIManager.GenerateEvent();
+        eventManager.BuffEffect();
         RoundNum++;
     }
 }
