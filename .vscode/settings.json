@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "WuhanGGJ.sln"
+    "dotnet.defaultSolution": "WuhanGGJ2025.sln"
 }
