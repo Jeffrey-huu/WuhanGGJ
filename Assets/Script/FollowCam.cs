@@ -6,12 +6,15 @@ public class FollowCam : MonoBehaviour
 {
     static public FollowCam instance;
     static private float cameraZ;
+    
+    public int initPosX=-12;
     public GameObject target;
 
     void Awake()
     {
         instance = this;
         cameraZ = transform.position.z;
+        transform.position=new Vector3(initPosX,transform.position.y,cameraZ);
     }
 
     // Start is called before the first frame update
