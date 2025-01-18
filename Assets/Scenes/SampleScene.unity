@@ -879,40 +879,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventarr:
-  - isfinished: 0
+  - eventType: 1
+    isfinished: 0
     name: "\u6E05\u6D01\u80FD\u6E90\u9769\u547D"
     summary: "\u4E00\u79CD\u57FA\u4E8E\u91CF\u5B50\u6280\u672F\u7684\u65B0\u578B\u80FD\u6E90\u7CFB\u7EDF"
-  - isfinished: 0
+  - eventType: 1
+    isfinished: 0
     name: "\u5168\u7403\u5171\u4EAB\u7ECF\u6D4E\u7F51\u7EDC"
     summary: "\u4E00\u79CD\u57FA\u4E8E\u91CF\u5B50\u6280\u672F\u7684\u65B0\u578B\u80FD\u6E90\u7CFB\u7EDF"
-  - isfinished: 0
+  - eventType: 1
+    isfinished: 0
     name: "\u751F\u7269\u79D1\u6280\u9769\u547D"
     summary: "\u57FA\u56E0\u7F16\u8F91\u548C\u751F\u7269\u589E\u5F3A\u6280\u672F\u666E\u53CA\uFF0C\u4EBA\u7C7B\u5E73\u5747\u5BFF\u547D\u88AB\u663E\u8457\u5EF6\u957F"
-  - isfinished: 0
+  - eventType: 1
+    isfinished: 0
     name: "\u5168\u7403\u865A\u62DF\u73B0\u5B9E\u7ECF\u6D4E"
     summary: "\u4EBA\u4EEC\u5728\u865A\u62DF\u7A7A\u95F4\u4E2D\u8FDB\u884C\u5DE5\u4F5C\u3001\u6559\u80B2\u3001\u548C\u4EA4\u6613"
-  - isfinished: 0
+  - eventType: 1
+    isfinished: 0
     name: "\u592A\u7A7A\u77FF\u4E1A\u7684\u5927\u89C4\u6A21\u53D1\u5C55"
     summary: "\u6210\u529F\u5728\u8FD1\u5730\u5C0F\u884C\u661F\u4E0A\u5B9E\u73B0\u4E86\u8D44\u6E90\u5F00\u91C7"
-  - isfinished: 0
+  - eventType: 0
+    isfinished: 0
     name: "AI\u53DB\u53D8\u5BFC\u81F4\u7ECF\u6D4E\u762B\u75EA"
     summary: "\u4E00\u4E2A\u4EBA\u5DE5\u667A\u80FD\u5931\u63A7\uFF0C\u5BF9\u5168\u7403\u7684\u91D1\u878D\u7F51\u7EDC\u548C\u4F9B\u5E94\u94FE\u8FDB\u884C\u653B\u51FB"
-  - isfinished: 0
+  - eventType: 0
+    isfinished: 0
     name: "\u5927\u89C4\u6A21\u7F51\u7EDC\u653B\u51FB"
     summary: "\u4E00\u573A\u7F51\u7EDC\u653B\u51FB\u762B\u75EA\u4E86\u4E3B\u8981\u7684\u91D1\u878D\u4EA4\u6613\u7CFB\u7EDF"
-  - isfinished: 0
+  - eventType: 0
+    isfinished: 0
     name: "\u6C14\u5019\u707E\u96BE\u5BFC\u81F4\u7CAE\u98DF\u5371\u673A"
     summary: "\u591A\u4E2A\u519C\u4E1A\u5730\u533A\u56E0\u6C14\u5019\u53D8\u5316\u906D\u5230\u6BC1\u706D\u6027\u6253\u51FB"
-  - isfinished: 0
+  - eventType: 0
+    isfinished: 0
     name: "\u57FA\u56E0\u6B66\u5668\u7684\u6EE5\u7528"
     summary: "\u67D0\u56FD\u653F\u5E9C\u6EE5\u7528\u57FA\u56E0\u6B66\u5668\uFF0C\u5F15\u53D1\u4E86\u533A\u57DF\u6027\u7684\u751F\u7269\u707E\u96BE"
-  - isfinished: 0
+  - eventType: 0
+    isfinished: 0
     name: "\u5916\u592A\u7A7A\u6B96\u6C11\u5931\u8D25\u7684\u8FDE\u9501\u53CD\u5E94"
     summary: "\u5DE8\u989D\u6295\u8D44\u7684\u706B\u661F\u6B96\u6C11\u9879\u76EE\u5931\u8D25\uFF0C\u6B96\u6C11\u57FA\u5730\u4E0E\u5730\u7403\u5931\u8054"
   finishedNum: 0
   uI_Asset: {fileID: 1221451383}
   bubbleController: {fileID: 1666036278}
   eventgroup: {fileID: 2119869706}
+  alpha: 0.5
 --- !u!4 &411877860
 Transform:
   m_ObjectHideFlags: 0

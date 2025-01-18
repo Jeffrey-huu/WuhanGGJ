@@ -20,10 +20,16 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        for (int i = eventarr.Length - 1; i > 0; i--)
+        for (int i = eventarr.Length - 1; i > 5; i--)
         {
-            int randomIndex = Random.Range(0, i + 1); // 生成随机索引
-            // 交换当前元素和随机元素
+            int randomIndex = Random.Range(5, i + 1);
+            mevent temp = eventarr[i];
+            eventarr[i] = eventarr[randomIndex];
+            eventarr[randomIndex] = temp;
+        }
+        for (int i = 4; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
             mevent temp = eventarr[i];
             eventarr[i] = eventarr[randomIndex];
             eventarr[randomIndex] = temp;
