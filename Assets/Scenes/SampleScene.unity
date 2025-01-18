@@ -1304,6 +1304,7 @@ GameObject:
   - component: {fileID: 759485324}
   - component: {fileID: 759485326}
   - component: {fileID: 759485325}
+  - component: {fileID: 759485327}
   m_Layer: 5
   m_Name: bubblevalue
   m_TagString: Untagged
@@ -1427,6 +1428,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759485323}
   m_CullTransparentMesh: 1
+--- !u!114 &759485327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759485323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bbaebd52d38df4aaf390d813e21046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleSpeed: 0.5
+  rotationSpeed: 20
+  shakeAngle: 5
+  minScale: 0.8
+  maxScale: 1.1
 --- !u!1 &794932693
 GameObject:
   m_ObjectHideFlags: 0
