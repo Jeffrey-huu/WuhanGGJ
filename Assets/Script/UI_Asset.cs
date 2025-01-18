@@ -10,6 +10,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool isPressed = false;
     private float pressStartTime = 0f;
     static UI_Asset instance;
+    public EventManager eventManager;
 
     public RectTransform tr;
     //最大值时的y轴坐标和高度
@@ -21,7 +22,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // 用户当前资产
     [SerializeField] private int currentAsset = 1000;
     [SerializeField] private float maxPressDuration = 3.0f;
-    [SerializeField] private float targetAsset= 2000;
+    [SerializeField] private float targetAsset = 2000;
 
     void Awake()
     {
@@ -112,6 +113,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 int eventindex = eventController.eventindex;
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
+                eventManager.AddAssetToEvent(eventindex, usedAsset);
                 DecreaseAsset(usedAsset);
             }
         }

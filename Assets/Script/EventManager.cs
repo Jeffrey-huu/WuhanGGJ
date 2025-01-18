@@ -16,6 +16,7 @@ public class EventManager : MonoBehaviour
         string eventName = eventarr[eventindex].name;
         if (eventName == "清洁能源革命")
         {
+            Debug.Log(asset);
             if (asset >= 20)
             {
                 EmotionBar.instance.AddEmotion(5);
