@@ -12,7 +12,7 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private float initialScale = 0.4f;
     [SerializeField] private int maxAssetLowerBound = 1000;
     [SerializeField] private int validRange = 100;
-    [SerializeField] private int maxScale;
+    [SerializeField] private float maxScale;
 
     private int currentAsset = 0;
     private float lerpSpeed = 0.1f;
