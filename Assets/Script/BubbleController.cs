@@ -35,16 +35,30 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         transform.localScale = new Vector3(initialScale, initialScale, initialScale);
         Debug.Log(additiveAsset);
         UpdateBubbleScale();
-    }
 
-    void FixedUpdate()
-    {
-        UpdateBubbleScale();
+        AudioSystem.instance.PlayBubbleIdleSound();
     }
 
     private void Update()
     {
         CheckIsNearBurst();
+        UpdateBubbleScale();
+    }
+
+    private void AudioManage()
+    {
+        if (currentAsset >= maxAssetLowerBound)
+        {
+            AudioSystem.instance.PlayBubbleNearBurstSound();
+        }
+        else if (currentAsset >= maxAssetLowerBound / 2)
+        {
+            AudioSystem.instance.PlayBubbleFastIdleSound();
+        }
+        else
+        {
+            AudioSystem.instance.PlayBubbleIdleSound();
+        }
     }
 
     private void BubbleAnimationTrigger()
@@ -71,6 +85,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void AddAsset(int num)
     {
         currentAsset += num;
+        AudioManage();
         CheckValid();
     }
 
@@ -78,6 +93,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void DecreaseAsset(int num)
     {
         currentAsset -= num;
+        AudioManage();
         CheckValid();
     }
 
@@ -90,8 +106,14 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             targetScale = maxScale;
 
         if (additiveScale > (maxScale - initialScale) / 2)
+        {
             anim.speed = 1.5f;
-
+        } 
+        else
+        {
+            anim.speed = 1f;
+        }
+            
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(targetScale, targetScale, targetScale), lerpSpeed);
     }
 
@@ -107,6 +129,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (currentAsset > maxAssetLowerBound + additiveAsset)
         {
             anim.SetBool("isBurst", true);
+            AudioSystem.instance.PlayGameFailedSound();
         }
     }
 
