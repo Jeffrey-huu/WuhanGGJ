@@ -13,6 +13,18 @@ public class EventManager : MonoBehaviour
     public int finishedNum = 0;
     public UI_Asset uI_Asset;
     public BubbleController bubbleController;
+
+    void Start()
+    {
+        for (int i = eventarr.Length - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1); // 生成随机索引
+            // 交换当前元素和随机元素
+            mevent temp = eventarr[i];
+            eventarr[i] = eventarr[randomIndex];
+            eventarr[randomIndex] = temp;
+        }
+    }
     public void AddAssetToEvent(int eventindex, int asset)
     {
         if (eventarr[eventindex].isfinished == false)
