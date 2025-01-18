@@ -8,6 +8,7 @@ public class EventManager : MonoBehaviour
 {
     [SerializeField] public mevent[] eventarr;
 
+    public int finishedNum = 0;
     public UI_Asset uI_Asset;
     public BubbleController bubbleController;
     public void AddAssetToEvent(int eventindex, int asset)
@@ -26,6 +27,15 @@ public class EventManager : MonoBehaviour
                 uI_Asset.AddAsset(6 * asset);
             }
         }
-        eventarr[eventindex].isfinished = true;
+        else if (eventName == "AI驱动的全球共享经济网络")
+        {
+
+        }
+        if (eventarr[eventindex].isfinished == false)
+        {
+            eventarr[eventindex].isfinished = true;
+            finishedNum++;
+        }
+
     }
 }
