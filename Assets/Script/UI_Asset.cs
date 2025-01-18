@@ -25,7 +25,9 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     [SerializeField] private int currentAsset = 1000;
     [SerializeField] private float maxPressDuration = 1.0f;
     [SerializeField] private float targetAsset = 2000;
+    [SerializeField] private int maxAssetCanUseOneTrans = 45;
     private float longPressDuration = 0;
+    private bool isEnter = false;
 
     void Awake()
     {
@@ -66,11 +68,16 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public void OnPointerDown(PointerEventData eventData)
     {
         isPressed = true;
+        isEnter = true;
         pressStartTime = Time.time;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (isEnter)
+        {
+            OnPointerExit(eventData);
+        }
         progressBar.value = 0;
         OnLongPress(longPressDuration);
         longPressDuration = 0;
@@ -79,6 +86,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public void OnPointerExit(PointerEventData eventData)
     {
         isPressed = false;
+        isEnter = false;
         longPressDuration = Time.time - pressStartTime;
         longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
     }
@@ -114,7 +122,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             if (bubbleController != null)
             {
                 float useScale = duration / maxPressDuration;
-                int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
+                int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
                 bubbleController.AddAsset(usedAsset);
                 DecreaseAsset(usedAsset);
             }
@@ -123,7 +131,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             {
                 int eventindex = eventController.eventindex;
                 float useScale = duration / maxPressDuration;
-                int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
+                int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
                 eventManager.AddAssetToEvent(eventindex, usedAsset);
                 DecreaseAsset(usedAsset);
             }

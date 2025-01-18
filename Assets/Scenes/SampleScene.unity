@@ -2135,6 +2135,7 @@ MonoBehaviour:
   currentAsset: 1000
   maxPressDuration: 1
   targetAsset: 2000
+  maxAssetCanUseOneTrans: 45
 --- !u!1 &1324447487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,6 +2588,7 @@ MonoBehaviour:
   maxPressDuration: 1
   personAsset: 15
   marketAsset: 100
+  maxAssetCanUseOneTrans: 45
 --- !u!95 &1666036279
 Animator:
   serializedVersion: 5

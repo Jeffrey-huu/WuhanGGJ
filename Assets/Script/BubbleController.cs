@@ -20,6 +20,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     [SerializeField] private float maxScale;
 
     private bool isPressed = false;
+    private bool isEnter = false;
     private float pressStartTime = 0f;
     [SerializeField] private float maxPressDuration = 1.0f;
     private float longPressDuration = 0;
@@ -27,6 +28,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public int currentAsset => personAsset + marketAsset;
     public int personAsset = 15;
     public int marketAsset = 100;
+    [SerializeField] private int maxAssetCanUseOneTrans = 45;
 
     private float lerpSpeed = 0.1f;
     private int additiveAsset;
@@ -167,11 +169,16 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void OnPointerDown(PointerEventData eventData)
     {
         isPressed = true;
+        isEnter = true;
         pressStartTime = Time.time;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (isEnter)
+        {
+            OnPointerExit(eventData);
+        }
         progressBar.value = 0;
         OnLongPress(longPressDuration);
         longPressDuration = 0;
@@ -180,6 +187,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void OnPointerExit(PointerEventData eventData)
     {
         isPressed = false;
+        isEnter = false;
         longPressDuration = Time.time - pressStartTime;
         longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
     }
@@ -204,7 +212,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 if (asset != null)
                 {
                     float useScale = duration / maxPressDuration;
-                    int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
+                    int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
                     asset.AddAsset(usedAsset);
                     DecreaseAsset(usedAsset);
                 }
