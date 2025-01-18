@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Reflection;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public EventUIManager eventUIManager;
     public EventManager eventManager;
+    public GameObject eventgroup;
     public int RoundNum;
     void Start()
     {
@@ -14,6 +16,11 @@ public class GameManager : MonoBehaviour
     }
     public void NextRound()
     {
+        foreach (Transform _event in eventgroup.transform)
+        {
+            int eventindex = _event.GetComponent<EventController>().eventindex;
+            eventManager.EventEnd(eventindex);
+        }
         Debug.Log("next turn");
         eventUIManager.GenerateEvent();
         eventManager.BuffEffect();

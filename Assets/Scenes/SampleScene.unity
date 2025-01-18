@@ -1183,6 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c7ef99ebf14194798547d6d9e22def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initPosX: -12
   target: {fileID: 1666036275}
 --- !u!114 &519420034
 MonoBehaviour:
@@ -2185,6 +2186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventUIManager: {fileID: 423657045}
   eventManager: {fileID: 411877859}
+  eventgroup: {fileID: 2119869706}
   RoundNum: 0
 --- !u!4 &1515697737
 Transform:

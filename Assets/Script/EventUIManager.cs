@@ -28,6 +28,7 @@ public class EventUIManager : MonoBehaviour
             {
                 if (!eventmanager.eventarr[index].isfinished)
                 {
+                    eventmanager.EventOccur(index);
                     Debug.Log(index);
                     GameObject eventButton = Instantiate(eventpre, eventgroup.transform);
                     TextMeshProUGUI[] textComponents = eventButton.GetComponentsInChildren<TextMeshProUGUI>();
