@@ -85,7 +85,5 @@ public class BackgroundController : MonoBehaviour
 
     void Update()
     {
-        SmoothMove(posList[0]);
-        SmoothScale(scaleList[0]);
     }
 }

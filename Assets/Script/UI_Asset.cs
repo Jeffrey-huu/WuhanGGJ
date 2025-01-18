@@ -28,10 +28,8 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    // ���������Ĳ���
     protected virtual void OnLongPress(float duration)
     {
-        // ���ͳ�������ʱ��� BubbleController
         SendLongPressDurationToBubbleController(duration);
     }
 

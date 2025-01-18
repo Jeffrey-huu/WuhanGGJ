@@ -6,14 +6,12 @@ using UnityEngine.UI;
 
 public class EventUIManager : MonoBehaviour
 {
-    public Canvas eventDescription;
     public EventManager eventmanager;
     public GameObject eventpre;
     public GameObject eventgroup;
 
     void Start()
     {
-        eventDescription.enabled = false;
         GenerateEvent();
     }
     public void GenerateEvent()
@@ -38,17 +36,5 @@ public class EventUIManager : MonoBehaviour
         }
     }
 
-    public void OnEventClick(int eventIndex)
-    {
-        Debug.Log(eventIndex);
-        eventmanager.eventarr[eventIndex].isfinished = true;
-        eventDescription.enabled = true;
-        eventDescription.GetComponentInChildren<TextMeshProUGUI>().text = eventmanager.eventarr[eventIndex].summary;
-    }
 
-    public void CloseEventUI()
-    {
-        eventDescription.enabled = false;
-        GenerateEvent();
-    }
 }
