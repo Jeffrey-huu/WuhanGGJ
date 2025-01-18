@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 33455805}
   - component: {fileID: 33455806}
   m_Layer: 0
-  m_Name: "ui\u8FB9\u6846"
+  m_Name: UI_Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 102594547}
   - component: {fileID: 102594548}
   m_Layer: 0
-  m_Name: "\u8BBE\u7F6Eui"
+  m_Name: settingsUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 331372360}
   - component: {fileID: 331372361}
   m_Layer: 0
-  m_Name: "\u6CE1\u6CE1\u68462"
+  m_Name: BubbleBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 497609874}
   - component: {fileID: 497609875}
   m_Layer: 0
-  m_Name: "\u60C5\u62A5\u7F51\u5B57\u4F53"
+  m_Name: NoticeHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1321,7 +1321,7 @@ GameObject:
   - component: {fileID: 846056399}
   - component: {fileID: 846056400}
   m_Layer: 0
-  m_Name: "\u6CE1\u6CE1ui"
+  m_Name: BubbleBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1518,7 +1518,7 @@ GameObject:
   - component: {fileID: 1324447488}
   - component: {fileID: 1324447489}
   m_Layer: 0
-  m_Name: "\u603B\u8D44\u4EA7\u6761"
+  m_Name: AssetsBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1634,7 +1634,7 @@ GameObject:
   - component: {fileID: 1360020313}
   - component: {fileID: 1360020314}
   m_Layer: 0
-  m_Name: "\u51CC\u9A7E"
+  m_Name: LingJia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2052,7 +2052,7 @@ GameObject:
   - component: {fileID: 1745769520}
   - component: {fileID: 1745769521}
   m_Layer: 0
-  m_Name: "\u4E8C\u6B21\u5143\u5934\u50CF"
+  m_Name: NikoNiko
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2220,7 +2220,7 @@ GameObject:
   - component: {fileID: 1859446103}
   - component: {fileID: 1859446104}
   m_Layer: 0
-  m_Name: "\u60C5\u7EEA\u503C\u69FD"
+  m_Name: EmotionBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2389,7 +2389,7 @@ GameObject:
   - component: {fileID: 1988609136}
   - component: {fileID: 1988609137}
   m_Layer: 0
-  m_Name: "bubble\u4EF7\u503C\u5B57\u4F53ui"
+  m_Name: bubbleValueHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2536,7 +2536,7 @@ GameObject:
   - component: {fileID: 2082549338}
   - component: {fileID: 2082549339}
   m_Layer: 0
-  m_Name: "\u76EE\u6807\u6807\u8BB0"
+  m_Name: TargetHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2620,7 +2620,7 @@ GameObject:
   - component: {fileID: 2113739117}
   - component: {fileID: 2113739118}
   m_Layer: 0
-  m_Name: "\u8D44\u4EA7\u6761\u5916\u89C2"
+  m_Name: BarBound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
