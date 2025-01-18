@@ -10,6 +10,7 @@ public class EventUIManager : MonoBehaviour
     public GameObject eventpre;
     public GameObject eventgroup;
 
+    int index = 0;
     void Start()
     {
         GenerateEvent();
@@ -20,19 +21,24 @@ public class EventUIManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        int i = 0;
         int count = 0;
-        while (i < eventmanager.eventarr.Length && count < 2)
+        while (index < eventmanager.eventarr.Length && count < 2)
         {
-            if (!eventmanager.eventarr[i].isfinished)
+            if (!eventmanager.eventarr[index].isfinished)
             {
-                Debug.Log(i);
+                Debug.Log(index);
                 GameObject eventButton = Instantiate(eventpre, eventgroup.transform);
-                eventButton.GetComponentInChildren<TextMeshProUGUI>().text = eventmanager.eventarr[i].name;
-                eventButton.GetComponent<EventController>().eventindex = i;
+                TextMeshProUGUI[] textComponents = eventButton.GetComponentsInChildren<TextMeshProUGUI>();
+                textComponents[1].text = eventmanager.eventarr[index].name;
+                textComponents[0].text = eventmanager.eventarr[index].summary;
+                eventButton.GetComponent<EventController>().eventindex = index;
                 count++;
             }
-            i++;
+            index++;
+            if (index == eventmanager.eventarr.Length)
+            {
+                index = 0;
+            }
         }
     }
 
