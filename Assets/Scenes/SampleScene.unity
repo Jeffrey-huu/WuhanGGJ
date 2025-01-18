@@ -913,6 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleController: {fileID: 1666036278}
   bubbleValue: {fileID: 759485325}
+  lerpSpeed: 10
 --- !u!1 &478754636
 GameObject:
   m_ObjectHideFlags: 0
