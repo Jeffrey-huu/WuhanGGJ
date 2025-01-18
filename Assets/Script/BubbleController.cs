@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
     private SpriteRenderer sr;
     private Animator anim;
+
+    public Slider progressBar;
 
     [SerializeField] private float initialScale = 0.4f;
     [SerializeField] private int maxAssetLowerBound = 1000;
@@ -18,7 +21,8 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private bool isPressed = false;
     private float pressStartTime = 0f;
-    [SerializeField] private float maxPressDuration = 3.0f;
+    [SerializeField] private float maxPressDuration = 1.0f;
+    private float longPressDuration = 0;
 
     public int currentAsset => personAsset + marketAsset;
     public int personAsset = 15;
@@ -46,6 +50,11 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         CheckIsNearBurst();
         UpdateBubbleScale();
+
+        if (isPressed)
+        {
+            progressBar.value = (Time.time - pressStartTime) / maxPressDuration;
+        }
     }
 
     private void AudioManage()
@@ -163,13 +172,16 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isPressed)
-        {
-            isPressed = false;
-            float longPressDuration = Time.time - pressStartTime;
-            longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
-            OnLongPress(longPressDuration);
-        }
+        progressBar.value = 0;
+        OnLongPress(longPressDuration);
+        longPressDuration = 0;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isPressed = false;
+        longPressDuration = Time.time - pressStartTime;
+        longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
     }
 
     protected virtual void OnLongPress(float duration)

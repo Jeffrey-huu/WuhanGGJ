@@ -5,12 +5,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // 右下角资产UI
-public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
     private bool isPressed = false;
     private float pressStartTime = 0f;
     static UI_Asset instance;
     public EventManager eventManager;
+
+    public Slider progressBar;
 
     public RectTransform tr;
     //最大值时的y轴坐标和高度
@@ -21,8 +23,9 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     // 用户当前资产
     [SerializeField] private int currentAsset = 1000;
-    [SerializeField] private float maxPressDuration = 3.0f;
+    [SerializeField] private float maxPressDuration = 1.0f;
     [SerializeField] private float targetAsset = 2000;
+    private float longPressDuration = 0;
 
     void Awake()
     {
@@ -33,6 +36,11 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void FixedUpdate()
     {
         UpdateAnim();
+
+        if (isPressed)
+        {
+            progressBar.value = (Time.time - pressStartTime) / maxPressDuration;
+        }
     }
 
     void UpdateAnim()
@@ -63,13 +71,16 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isPressed)
-        {
-            isPressed = false;
-            float longPressDuration = Time.time - pressStartTime;
-            longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
-            OnLongPress(longPressDuration);
-        }
+        progressBar.value = 0;
+        OnLongPress(longPressDuration);
+        longPressDuration = 0;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isPressed = false;
+        longPressDuration = Time.time - pressStartTime;
+        longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
     }
 
     public void AddAsset(int num)
