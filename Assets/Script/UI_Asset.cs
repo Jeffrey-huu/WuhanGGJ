@@ -1,15 +1,45 @@
+using System.Drawing;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// 右下角资产UI
 public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private bool isPressed = false;
     private float pressStartTime = 0f;
-    public EventManager eventManager;
+    static UI_Asset instance;
+
+    public RectTransform tr;
+    //最大值时的y轴坐标和高度
+    [SerializeField] private float maxY = -175;
+    [SerializeField] private float minY = -515;
+    [SerializeField] private float maxH = 720;
+
+
+    // 用户当前资产
     [SerializeField] private int currentAsset = 1000;
     [SerializeField] private float maxPressDuration = 3.0f;
+    [SerializeField] private float targetAsset= 2000;
+
+    void Awake()
+    {
+        tr = GetComponent<RectTransform>();
+        instance = this;
+        UpdateAnim();
+    }
+
+    void UpdateAnim()
+    {
+        float height=(currentAsset/targetAsset)*maxH;
+        // float height=Mathf.Lerp(tr.sizeDelta.x,(currentAsset/targetAsset)*maxH,Time.deltaTime*5);
+        float scale = (maxY-minY)/maxH;
+        float y =minY + height*scale;
+        // float y = Mathf.Lerp(tr.anchoredPosition.y,minY + height*scale,Time.deltaTime*5);
+        tr.anchoredPosition = new Vector2(tr.anchoredPosition.x, y);
+        tr.sizeDelta = new Vector2(tr.sizeDelta.x, height);
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -30,12 +60,18 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void AddAsset(int num)
     {
-        currentAsset += num;
+        currentAsset = (int)Mathf.Clamp(currentAsset+num,0,targetAsset);
+        UpdateAnim();
+        if(currentAsset > targetAsset)
+        {
+            Debug.Log("Game WIN!!!");
+        }
     }
 
     public void DecreaseAsset(int num)
     {
-        currentAsset -= num;
+        currentAsset = (int)Mathf.Clamp(currentAsset-num,0,targetAsset);
+        UpdateAnim();
     }
 
     protected virtual void OnLongPress(float duration)
@@ -64,7 +100,6 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 int eventindex = eventController.eventindex;
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
-                eventManager.AddAssetToEvent(eventindex, usedAsset);
                 DecreaseAsset(usedAsset);
             }
         }
