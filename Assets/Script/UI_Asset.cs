@@ -28,12 +28,22 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    protected virtual void OnLongPress(float duration)
+    public void AddAsset(int num)
     {
-        SendLongPressDurationToBubbleController(duration);
+        currentAsset += num;
     }
 
-    private void SendLongPressDurationToBubbleController(float duration)
+    public void DecreaseAsset(int num)
+    {
+        currentAsset -= num;
+    }
+
+    protected virtual void OnLongPress(float duration)
+    {
+        SendLongPressDuration(duration);
+    }
+
+    private void SendLongPressDuration(float duration)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
@@ -46,7 +56,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
                 bubbleController.AddAsset(usedAsset);
-                currentAsset -= usedAsset;
+                DecreaseAsset(usedAsset);
             }
             EventController eventController = target.GetComponent<EventController>();
             if (eventController != null)
@@ -55,7 +65,7 @@ public class UI_Asset : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * currentAsset);
                 eventManager.AddAssetToEvent(eventindex, usedAsset);
-                currentAsset -= usedAsset;
+                DecreaseAsset(usedAsset);
             }
         }
     }
