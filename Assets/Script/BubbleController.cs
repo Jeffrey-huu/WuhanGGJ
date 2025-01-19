@@ -64,10 +64,16 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private void Update()
     {
-        //位置始终保持正中
+        //始终维持位置，防止rigidBody作怪
         transform.position = new Vector3(0, 0, 0);
+
         CheckIsNearBurst();
         UpdateBubbleScale();
+
+        if(currentAsset>200)
+        {
+            SubBubbleController.BreakAble=true;
+        }
 
         if (isPressed)
         {
