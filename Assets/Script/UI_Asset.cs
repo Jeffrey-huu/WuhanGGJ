@@ -9,6 +9,8 @@ public class UI_Asset : MonoBehaviour
 {
     public EventManager eventManager;
 
+    public UI_TotalAsset totalAsset;
+
     public RectTransform tr;
     //最大值时的y轴坐标和高度
     [SerializeField] private float maxY = -175;
@@ -52,7 +54,7 @@ public class UI_Asset : MonoBehaviour
     {
         currentAsset = (int)Mathf.Clamp(currentAsset+num,0,targetAsset);
 
-        if(currentAsset > targetAsset)
+        if(totalAsset.currentAsset > targetAsset)
         {
             Debug.Log("Game WIN!!!");
         }
