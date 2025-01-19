@@ -15,7 +15,7 @@ public class SettlementUI : MonoBehaviour
     public TextMeshProUGUI text2;
     public TextMeshProUGUI text_total;
     public GameObject eventgroup;
-    void Start()
+    void Awake()
     {
         settlementUI.gameObject.SetActive(false);
     }
@@ -69,6 +69,5 @@ public class SettlementUI : MonoBehaviour
             eventManager.EventEnd(eventindex);
         }
         eventManager.BuffEffect();
-
     }
 }
