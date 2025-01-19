@@ -52,7 +52,7 @@ MonoBehaviour:
   failSound: {fileID: 8300000, guid: 9a4ce1a1876794246a7d8308e5ad5d38, type: 3}
   nextTurn: {fileID: 8300000, guid: 6364d5f25384bdb46a9d2060945534a6, type: 3}
   gameBegin: {fileID: 8300000, guid: 313078a36352e7446b6a06ff2164fbba, type: 3}
-  longPress: {fileID: 8300000, guid: ba9d251449fddbc42bf443d3f44f4220, type: 3}
+  longPress: {fileID: 8300000, guid: 6a0a8f21d4e5b2442859edabcc672b3e, type: 3}
   assetPutDown: {fileID: 8300000, guid: d32d785746e6a4748b47e225125e79b8, type: 3}
   roundFinish: {fileID: 8300000, guid: a7240403d866152448e9de0932d08a10, type: 3}
   bubbleBurst: {fileID: 8300000, guid: b8e45c2c0cf24e24eb1e73f166c0f120, type: 3}
