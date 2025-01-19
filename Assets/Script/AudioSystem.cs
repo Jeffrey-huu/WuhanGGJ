@@ -20,13 +20,13 @@ public class AudioSystem : MonoBehaviour
     [SerializeField] private AudioClip roundFinish;
     [SerializeField] private AudioClip bubbleBurst;
 
-    // Ìí¼ÓÁ½¸öÒôÆµÔ´£¬Ò»¸öÓÃÓÚBGM£¬Ò»¸öÓÃÓÚÒôÐ§
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆµÔ´ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BGMï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
     private AudioSource bgmSource;
     private AudioSource sfxSource;
 
-    // ÒôÁ¿¿ØÖÆ
-    [Range(0f, 1f)] public float musicVolume = 1f;  // ±³¾°ÒôÀÖÒôÁ¿
-    [Range(0f, 1f)] public float sfxVolume = 1f;    // ÒôÐ§ÒôÁ¿
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Range(0f, 1f)] public float musicVolume = 1f;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Range(0f, 1f)] public float sfxVolume = 1f;    // ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
 
     private void Awake()
     {
@@ -45,21 +45,21 @@ public class AudioSystem : MonoBehaviour
 
     private void Start()
     {
-        // »ñÈ¡×é¼þ
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½
         bgmSource = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
 
-        // ÉèÖÃÒôÁ¿
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         bgmSource.volume = musicVolume;
         sfxSource.volume = sfxVolume;
 
         LoadAllAudioClips();
 
-        // ²¥·Å±³¾°ÒôÀÖ
+        // ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         PlayIntroSound();
     }
 
-    // ¶ÔÍâµ÷½ÚÒôÐ§ÒôÁ¿µÄ½Ó¿Ú
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½Ä½Ó¿ï¿½
     public void SetMusicVolume(float volume)
     {
         musicVolume = Mathf.Clamp01(volume);
@@ -72,7 +72,7 @@ public class AudioSystem : MonoBehaviour
         sfxSource.volume = sfxVolume;
     }
 
-    // »ñÈ¡µ±Ç°ÒôÐ§ÒôÁ¿ºÍ±³¾°ÒôÀÖÒôÁ¿
+    // ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public float GetMusicVolume()
     {
         return musicVolume;
@@ -102,6 +102,7 @@ public class AudioSystem : MonoBehaviour
 
     private void PlaySound(AudioSource source, bool loop, AudioClip sound)
     {
+        source.Stop();
         source.loop = loop;
         source.clip = sound;
         source.Play();
@@ -151,7 +152,7 @@ public class AudioSystem : MonoBehaviour
     }
 
 
-    // ²¥·Å²»Í¬ÒôÐ§µÄ·½·¨
+    // ï¿½ï¿½ï¿½Å²ï¿½Í¬ï¿½ï¿½Ð§ï¿½Ä·ï¿½ï¿½ï¿½
     public void PlayIntroSound()
     {
         if (bgmSource.clip == introSound) return;
@@ -179,12 +180,14 @@ public class AudioSystem : MonoBehaviour
     public void PlayGameSuccessfulSound()
     {
         if (bgmSource.clip == successSound) return;
+        Debug.Log("Success Audio");
         PlaySound(bgmSource, true, successSound);
     }
 
     public void PlayGameFailedSound()
     {
         if (bgmSource.clip == failSound) return;
+        Debug.Log("Fail Audio");
         PlaySound(bgmSource, true, failSound);
     }
 }

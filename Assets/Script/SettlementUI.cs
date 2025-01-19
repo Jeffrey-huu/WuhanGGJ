@@ -21,9 +21,11 @@ public class SettlementUI : MonoBehaviour
     public GameObject SuccessImg;
 
     public bool gameOver=false;
+    static public SettlementUI instance;
 
     void Awake()
     {
+        instance = this;
         gameOver=false;
         gameObject.SetActive(false);
     }
@@ -37,6 +39,7 @@ public class SettlementUI : MonoBehaviour
     public void Fail()
     {
         if(gameOver)return;
+        AudioSystem.instance.PlayGameFailedSound();
         gameOver=true;
         FailUI();
         // Invoke("FailUI", 1f);
@@ -53,6 +56,7 @@ public class SettlementUI : MonoBehaviour
     public void Succeed()
     {
         if(gameOver)return;
+        AudioSystem.instance.PlayGameSuccessfulSound();
         gameOver=true;
         SucceedUI();
         // Invoke("SucceedUI", 1f);
@@ -114,7 +118,8 @@ public class SettlementUI : MonoBehaviour
         //1.关闭游戏
         if(gameOver)
         {
-            SceneManager.LoadSceneAsync(0);
+            Debug.Log("Close UI");
+            SceneManager.LoadScene(0);
             return;
         }
 

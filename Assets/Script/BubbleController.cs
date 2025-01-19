@@ -112,6 +112,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private void AudioManage()
     {
+        if(SettlementUI.instance.gameOver)return;
         if (currentAsset >= maxAssetLowerBound)
         {
             AudioSystem.instance.PlayBubbleNearBurstSound();
@@ -216,7 +217,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             Debug.Log("Bubble Break");
             if(anim!=null)anim.SetBool("isBurst", true);
             AudioSystem.instance.PlayBubbleBurstSound();
-            AudioSystem.instance.PlayGameFailedSound();
+            // AudioSystem.instance.PlayGameFailedSound();
             // gameManager.Defeat();
         }
     }
