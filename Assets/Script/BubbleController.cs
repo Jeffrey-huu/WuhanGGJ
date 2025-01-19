@@ -56,6 +56,11 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (isPressed)
         {
             progressBar.value = (Time.time - pressStartTime) / maxPressDuration;
+            if (personAsset < maxAssetCanUseOneTrans)
+            {
+                float maxScale = (float)personAsset / maxAssetCanUseOneTrans;
+                progressBar.value = (progressBar.value > maxScale ? maxScale : progressBar.value);
+            }
         }
     }
 
@@ -213,6 +218,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 {
                     float useScale = duration / maxPressDuration;
                     int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
+                    usedAsset = Mathf.Clamp(usedAsset, 0, personAsset);
                     asset.AddAsset(usedAsset);
                     DecreaseAsset(usedAsset);
                 }

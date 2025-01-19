@@ -913,6 +913,7 @@ MonoBehaviour:
   uI_Asset: {fileID: 1221451383}
   bubbleController: {fileID: 1666036278}
   eventgroup: {fileID: 2119869706}
+  alpha: 0.5
 --- !u!4 &411877860
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,7 +2135,7 @@ MonoBehaviour:
   minY: -515
   maxH: 720
   currentAsset: 1000
-  maxPressDuration: 1
+  maxPressDuration: 2
   targetAsset: 2000
   maxAssetCanUseOneTrans: 45
 --- !u!1 &1324447487
@@ -2586,7 +2587,7 @@ MonoBehaviour:
   maxAssetLowerBound: 1000
   validRange: 100
   maxScale: 0.55
-  maxPressDuration: 1
+  maxPressDuration: 2
   personAsset: 15
   marketAsset: 100
   maxAssetCanUseOneTrans: 45
