@@ -2464,6 +2464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af63632cfa2f4a46ae70dce92b5be72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI_Asset: {fileID: 1221451383}
+  bubbleController: {fileID: 1666036278}
   eventUIManager: {fileID: 423657045}
   eventManager: {fileID: 411877859}
   eventgroup: {fileID: 2119869706}

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public UI_Asset uI_Asset;
+    public BubbleController bubbleController;
     public EventUIManager eventUIManager;
     public EventManager eventManager;
     public GameObject eventgroup;
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     }
     public void NextRound()
     {
+        uI_Asset.AddAsset(bubbleController.currentAsset / 5);
         foreach (Transform _event in eventgroup.transform)
         {
             int eventindex = _event.GetComponent<EventController>().eventindex;
