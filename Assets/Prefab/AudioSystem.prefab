@@ -50,11 +50,11 @@ MonoBehaviour:
   bubbleNearBurstSound: {fileID: 8300000, guid: b271a4876af9fc248aceb586b1e155f4, type: 3}
   successSound: {fileID: 8300000, guid: 81e6eaf7dd9a82d49bbd632d67bfa660, type: 3}
   failSound: {fileID: 8300000, guid: 9a4ce1a1876794246a7d8308e5ad5d38, type: 3}
-  nextTurn: {fileID: 8300000, guid: 3e41a8c73f435894ca4403a37a390107, type: 3}
-  gameBegin: {fileID: 8300000, guid: f9eb1d8a96383ae45af9df4d80a025e2, type: 3}
-  longPress: {fileID: 8300000, guid: d6d210a8d969dde4cb78aeb4d4a4ef00, type: 3}
-  assetPutDown: {fileID: 8300000, guid: 0c34c73ef95b23e48b84e3dee07bd378, type: 3}
-  roundFinish: {fileID: 8300000, guid: 5a7ab55d964e5c14c883155694c3ff53, type: 3}
-  bubbleBurst: {fileID: 8300000, guid: 6244d06a9939aed46bb86ae6732d1abb, type: 3}
+  nextTurn: {fileID: 8300000, guid: 6364d5f25384bdb46a9d2060945534a6, type: 3}
+  gameBegin: {fileID: 8300000, guid: 313078a36352e7446b6a06ff2164fbba, type: 3}
+  longPress: {fileID: 8300000, guid: ba9d251449fddbc42bf443d3f44f4220, type: 3}
+  assetPutDown: {fileID: 8300000, guid: d32d785746e6a4748b47e225125e79b8, type: 3}
+  roundFinish: {fileID: 8300000, guid: a7240403d866152448e9de0932d08a10, type: 3}
+  bubbleBurst: {fileID: 8300000, guid: b8e45c2c0cf24e24eb1e73f166c0f120, type: 3}
   musicVolume: 0.337
   sfxVolume: 1
