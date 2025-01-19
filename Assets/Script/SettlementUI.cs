@@ -25,30 +25,45 @@ public class SettlementUI : MonoBehaviour
     void Awake()
     {
         gameOver=false;
-        settlementUI.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
     public void ShowUI()
     {
+        gameObject.SetActive(true);
         settlementUI.gameObject.SetActive(true);
         UpdateText();
     }
 
     public void Fail()
     {
+        if(gameOver)return;
+        gameOver=true;
+        FailUI();
+        // Invoke("FailUI", 1f);
+    }
+
+    public void FailUI()
+    {
         HideText();
         gameObject.SetActive(true);
         failImg.SetActive(true);
         SuccessImg.SetActive(false);
-        gameOver=true;
     }
 
     public void Succeed()
+    {
+        if(gameOver)return;
+        gameOver=true;
+        SucceedUI();
+        // Invoke("SucceedUI", 1f);
+    }
+
+    public void SucceedUI()
     {
         HideText();
         gameObject.SetActive(true);
         failImg.SetActive(false);
         SuccessImg.SetActive(true);
-        gameOver=true;
     }
 
     public void HideText()
@@ -95,13 +110,19 @@ public class SettlementUI : MonoBehaviour
 
     public void CloseUI()
     {
+        HideText();
+        //1.关闭游戏
         if(gameOver)
         {
             SceneManager.LoadSceneAsync(0);
+            return;
         }
+
+        //2.平时
         settlementUI.gameObject.SetActive(false);
         uI_Asset.AddAsset(bubbleController.currentAsset / 5);
         bubbleController.AddAsset(EmotionBar.instance.emotionValue * 3);
+        AudioSystem.instance.PlayNextTurnSound();
         foreach (Transform _event in eventgroup.transform)
         {
             int eventindex = _event.GetComponent<EventController>().eventindex;

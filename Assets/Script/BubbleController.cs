@@ -128,6 +128,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private void BubbleAnimationTrigger()
     {
+        gameManager.Defeat();
         Destroy(gameObject);
     }
 
@@ -212,10 +213,11 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
         if (currentAsset > maxAssetLowerBound + additiveAsset)
         {
-            anim.SetBool("isBurst", true);
+            Debug.Log("Bubble Break");
+            if(anim!=null)anim.SetBool("isBurst", true);
             AudioSystem.instance.PlayBubbleBurstSound();
             AudioSystem.instance.PlayGameFailedSound();
-            gameManager.Defeat();
+            // gameManager.Defeat();
         }
     }
 

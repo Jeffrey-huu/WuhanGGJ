@@ -650,6 +650,7 @@ MonoBehaviour:
   eventgroup: {fileID: 2119869706}
   failImg: {fileID: 862217309}
   SuccessImg: {fileID: 312484024}
+  gameOver: 0
 --- !u!1 &183566722
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +817,7 @@ Transform:
   m_GameObject: {fileID: 249794520}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.5, y: -4.53, z: 0}
+  m_LocalPosition: {x: 9.64, y: 3.9, z: 0}
   m_LocalScale: {x: 0.8837209, y: 0.8837209, z: 0.8837209}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -944,7 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   mergeDistance: 10
-  addAsset: 0
+  addAsset: 300
   initialScale: 0.8
   maxAssetLowerBound: 1000
   validRange: 100
@@ -3884,8 +3885,8 @@ Transform:
   m_GameObject: {fileID: 1651292839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.9, y: 0, z: 0}
-  m_LocalScale: {x: 0.8837209, y: 0.8837209, z: 0.8837209}
+  m_LocalPosition: {x: -9.53, y: 3.33, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 701888264}
@@ -4012,7 +4013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   mergeDistance: 10
-  addAsset: 0
+  addAsset: 200
   initialScale: 0.7
   maxAssetLowerBound: 1000
   validRange: 100
@@ -4034,9 +4035,10 @@ GameObject:
   - component: {fileID: 1666036278}
   - component: {fileID: 1666036279}
   - component: {fileID: 1666036280}
+  - component: {fileID: 1666036281}
   m_Layer: 7
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: TargetBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4125,7 +4127,7 @@ MonoBehaviour:
   initialScale: 0.38
   maxAssetLowerBound: 1000
   validRange: 100
-  maxScale: 0.55
+  maxScale: 0.7
   maxPressDuration: 2
   personAsset: 15
   marketAsset: 100
@@ -4187,6 +4189,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.85
+--- !u!50 &1666036281
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666036275}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!1 &1678325867
 GameObject:
   m_ObjectHideFlags: 0
