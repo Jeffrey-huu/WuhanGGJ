@@ -15,7 +15,7 @@ public class SmallBubble : MonoBehaviour
     void Awake()
     {
         instance = this;
-        bubbleRenderer = GetComponent<Renderer>();
+        bubbleRenderer = GetComponent<SpriteRenderer>();
         SetVisiable(false);
     }
 
@@ -28,6 +28,8 @@ public class SmallBubble : MonoBehaviour
     public void SetVisiable(bool visiable)
     {
         bubbleRenderer.enabled = visiable;
+        if(visiable==false)SetScale(0.1f);
+        // gameObject.SetActive(visiable);
     }
 
 
