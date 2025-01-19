@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 0.1
-  maxScale: 450
+  maxScale: 200
 --- !u!212 &183566724
 SpriteRenderer:
   m_ObjectHideFlags: 0
