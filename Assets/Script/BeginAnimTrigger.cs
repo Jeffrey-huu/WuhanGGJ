@@ -24,7 +24,7 @@ public class BeginAnimTrigger : MonoBehaviour
     public void LoadScene()
     {
         Debug.Log("LoadScene");
-        SceneManager.LoadSceneAsync(0); 
+        SceneManager.LoadSceneAsync(1); 
     }
 
     public void DestroySelf()
