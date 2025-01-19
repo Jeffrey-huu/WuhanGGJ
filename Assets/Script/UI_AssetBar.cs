@@ -13,7 +13,8 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public Slider progressBar;
 
-    // ÓÃ»§µ±Ç°×Ê²ú
+
+    // ï¿½Ã»ï¿½ï¿½ï¿½Ç°ï¿½Ê²ï¿½
     [SerializeField] private float maxPressDuration = 2.0f;
     [SerializeField] private int maxAssetCanUseOneTrans = 45;
     private float longPressDuration = 0;
@@ -31,6 +32,7 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 float maxScale = (float)asset_ui.currentAsset / maxAssetCanUseOneTrans;
                 progressBar.value = (progressBar.value > maxScale ? maxScale : progressBar.value);
             }
+            SmallBubble.instance.SetScale(progressBar.value);
         }
     }
 
@@ -39,6 +41,7 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         isPressed = true;
         isEnter = true;
         pressStartTime = Time.time;
+        SmallBubble.instance.SetVisiable(true);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -50,6 +53,7 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         progressBar.value = 0;
         OnLongPress(longPressDuration);
         longPressDuration = 0;
+        SmallBubble.instance.SetVisiable(false);
     }
 
     public void OnPointerExit(PointerEventData eventData)

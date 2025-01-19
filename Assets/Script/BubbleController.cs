@@ -35,6 +35,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private bool isNearBurst = false;
 
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -61,6 +62,8 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 float maxScale = (float)personAsset / maxAssetCanUseOneTrans;
                 progressBar.value = (progressBar.value > maxScale ? maxScale : progressBar.value);
             }
+            float scale = progressBar.value;
+            SmallBubble.instance.SetScale(scale);
         }
     }
 
@@ -176,6 +179,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         isPressed = true;
         isEnter = true;
         pressStartTime = Time.time;
+        SmallBubble.instance.SetVisiable(true);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -187,6 +191,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         progressBar.value = 0;
         OnLongPress(longPressDuration);
         longPressDuration = 0;
+        SmallBubble.instance.SetVisiable(false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
