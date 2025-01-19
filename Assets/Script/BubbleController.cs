@@ -9,6 +9,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
+    public GameManager gameManager;
     private SpriteRenderer sr;
     private Animator anim;
 
@@ -142,17 +143,24 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (additiveScale > (maxScale - initialScale) / 2)
         {
             anim.speed = 1.5f;
-        } 
+        }
         else
         {
             anim.speed = 1f;
         }
-            
+
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(targetScale, targetScale, targetScale), lerpSpeed);
     }
 
     private void CheckValid()
     {
+        if (currentAsset < 0)
+        {
+            gameManager.Defeat();
+            marketAsset = 0;
+            personAsset = 0;
+            return;
+        }
         if (currentAsset < maxAssetLowerBound)
         {
             return;

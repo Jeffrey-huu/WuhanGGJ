@@ -2588,6 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09cbaccf5f78c149834de66c606e0d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1515697736}
   eventManager: {fileID: 411877859}
   totalAsset: {fileID: 375782926}
   tr: {fileID: 0}
@@ -3206,6 +3207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c681ac771994bd540b059bf4430093c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1515697736}
   progressBar: {fileID: 1889428686}
   initialScale: 0.38
   maxAssetLowerBound: 1000
