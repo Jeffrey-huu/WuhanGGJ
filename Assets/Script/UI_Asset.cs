@@ -7,7 +7,10 @@ using UnityEngine.UI;
 // 右下角资产UI
 public class UI_Asset : MonoBehaviour
 {
+    public GameManager gameManager;
     public EventManager eventManager;
+
+    public UI_TotalAsset totalAsset;
 
     public RectTransform tr;
     //最大值时的y轴坐标和高度
@@ -50,16 +53,16 @@ public class UI_Asset : MonoBehaviour
 
     public void AddAsset(int num)
     {
-        currentAsset = (int)Mathf.Clamp(currentAsset+num,0,targetAsset);
+        currentAsset = (int)Mathf.Clamp(currentAsset + num, 0, targetAsset);
 
-        if(currentAsset > targetAsset)
+        if (totalAsset.currentAsset > targetAsset)
         {
-            Debug.Log("Game WIN!!!");
+            gameManager.Victory();
         }
     }
 
     public void DecreaseAsset(int num)
     {
-        currentAsset = (int)Mathf.Clamp(currentAsset-num,0,targetAsset);
+        currentAsset = (int)Mathf.Clamp(currentAsset - num, 0, targetAsset);
     }
 }

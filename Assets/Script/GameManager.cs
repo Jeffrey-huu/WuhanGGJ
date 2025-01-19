@@ -29,4 +29,13 @@ public class GameManager : MonoBehaviour
         eventManager.BuffEffect();
         RoundNum++;
     }
+
+    public void Victory()
+    {
+        Debug.Log("victory");
+    }
+    public void Defeat()
+    {
+        Debug.Log("defeat");
+    }
 }

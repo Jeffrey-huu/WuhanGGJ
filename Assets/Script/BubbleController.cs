@@ -9,6 +9,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
+    public GameManager gameManager;
     private SpriteRenderer sr;
     private Animator anim;
 
@@ -189,6 +190,13 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private void CheckValid()
     {
+        if (currentAsset < 0)
+        {
+            gameManager.Defeat();
+            marketAsset = 0;
+            personAsset = 0;
+            return;
+        }
         if (currentAsset < maxAssetLowerBound)
         {
             return;
