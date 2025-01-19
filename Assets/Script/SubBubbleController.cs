@@ -17,9 +17,7 @@ public class SubBubbleController : MonoBehaviour
     public float mergeDistance = 10f;
     public int addAsset;
 
-    private int recordSubOneCollider = 0;
-
-    
+    static public bool BreakAble = false;
 
 
     [SerializeField] private float initialScale = 0.8f;
@@ -75,14 +73,8 @@ public class SubBubbleController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TargetBubble")
+        if (collision.gameObject.tag == "TargetBubble" && BreakAble)
         {
-            //第一次从左到右冲击，取消
-            if(gameObject.tag == "Bubble1" && recordSubOneCollider == 0)
-            {
-                recordSubOneCollider++;
-                return;
-            }
             Debug.Log("Collision detected!");
             Debug.Log("Target is within merge distance!");
             BubbleController.instance.AddAsset(addAsset);
