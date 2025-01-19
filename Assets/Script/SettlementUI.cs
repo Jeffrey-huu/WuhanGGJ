@@ -79,6 +79,11 @@ public class SettlementUI : MonoBehaviour
 
     public void UpdateText()
     {
+        if (gameOver)
+        {
+            HideText();
+            return;
+        }
         int[] eventindexs = new int[2];
         int i = 0;
         foreach (Transform _event in eventgroup.transform)

@@ -1294,6 +1294,7 @@ MonoBehaviour:
   eventManager: {fileID: 411877859}
   pocessAsset: {fileID: 1221451383}
   bc: {fileID: 1666036278}
+  gameManager: {fileID: 1515697736}
   tr: {fileID: 0}
   maxY: -175
   minY: -515

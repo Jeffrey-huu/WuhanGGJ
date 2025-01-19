@@ -11,6 +11,8 @@ public class UI_TotalAsset : MonoBehaviour
     public UI_Asset pocessAsset;
     public BubbleController bc;
 
+    public GameManager gameManager;
+
     public RectTransform tr;
     //最大值时的y轴坐标和高度
     [SerializeField] private float maxY = -175;
@@ -29,6 +31,12 @@ public class UI_TotalAsset : MonoBehaviour
     private void FixedUpdate()
     {
         currentAsset = bc.personAsset + pocessAsset.currentAsset;
+
+        if (currentAsset > targetAsset)
+        {
+            gameManager.Victory();
+        }
+
         UpdateAnim();
     }
 
