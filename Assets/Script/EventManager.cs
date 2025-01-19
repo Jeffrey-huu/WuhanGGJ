@@ -91,7 +91,7 @@ public class EventManager : MonoBehaviour
         }
         else if (eventName == "太空矿业的大规模发展" || eventName == "脑机接口的普及")
         {
-            bubbleController.AddAsset(5 * asset);
+            bubbleController.AddAsset(4 * asset);
         }
         else if (eventName == "AI叛变导致经济瘫痪" || eventName == "全球水资源战争")
         {
