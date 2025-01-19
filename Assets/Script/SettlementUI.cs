@@ -119,7 +119,7 @@ public class SettlementUI : MonoBehaviour
         if(gameOver)
         {
             Debug.Log("Close UI");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
             return;
         }
 
