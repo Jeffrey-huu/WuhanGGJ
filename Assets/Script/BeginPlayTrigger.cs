@@ -25,7 +25,7 @@ public class BeginPlayTrigger : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("BeginPlayTrigger OnMouseDown");
-        // SceneManager.LoadSceneAsync(0); 
+        AudioSystem.instance.PlayGameBeginSound();
         anim.SetActive(true);
     }
 }

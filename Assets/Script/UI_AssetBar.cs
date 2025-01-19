@@ -38,6 +38,7 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        AudioSystem.instance.PlayLongPressSound();
         isPressed = true;
         isEnter = true;
         pressStartTime = Time.time;
@@ -58,6 +59,7 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        AudioSystem.instance.StopPlayLongPressSound();
         isPressed = false;
         isEnter = false;
         longPressDuration = Time.time - pressStartTime;
@@ -79,6 +81,7 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             BubbleController bubbleController = target.GetComponent<BubbleController>();
             if (bubbleController != null)
             {
+                AudioSystem.instance.PlayAssetPutDownSound();
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
                 usedAsset = Mathf.Clamp(usedAsset, 0, asset_ui.currentAsset);
@@ -88,6 +91,7 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             EventController eventController = target.GetComponent<EventController>();
             if (eventController != null)
             {
+                AudioSystem.instance.PlayAssetPutDownSound();
                 int eventindex = eventController.eventindex;
                 float useScale = duration / maxPressDuration;
                 int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);

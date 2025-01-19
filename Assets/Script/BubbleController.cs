@@ -163,6 +163,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (currentAsset > maxAssetLowerBound + additiveAsset)
         {
             anim.SetBool("isBurst", true);
+            AudioSystem.instance.PlayBubbleBurstSound();
             AudioSystem.instance.PlayGameFailedSound();
         }
     }
@@ -176,6 +177,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        AudioSystem.instance.PlayLongPressSound();
         isPressed = true;
         isEnter = true;
         pressStartTime = Time.time;
@@ -196,6 +198,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        AudioSystem.instance.StopPlayLongPressSound();
         isPressed = false;
         isEnter = false;
         longPressDuration = Time.time - pressStartTime;
@@ -221,6 +224,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 var assetBar = target.GetComponent<UI_AssetBar>();
                 if (assetBar != null)
                 {
+                    AudioSystem.instance.PlayAssetPutDownSound();
                     float useScale = duration / maxPressDuration;
                     int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
                     usedAsset = Mathf.Clamp(usedAsset, 0, personAsset);
