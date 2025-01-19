@@ -213,13 +213,13 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             foreach (RaycastResult result in results)
             {
                 GameObject target = result.gameObject;
-                var asset = target.GetComponent<UI_Asset>();
-                if (asset != null)
+                var assetBar = target.GetComponent<UI_AssetBar>();
+                if (assetBar != null)
                 {
                     float useScale = duration / maxPressDuration;
                     int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
                     usedAsset = Mathf.Clamp(usedAsset, 0, personAsset);
-                    asset.AddAsset(usedAsset);
+                    assetBar.asset_ui.AddAsset(usedAsset);
                     DecreaseAsset(usedAsset);
                 }
             }
