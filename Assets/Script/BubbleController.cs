@@ -198,9 +198,9 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         if (currentAsset < 0)
         {
-            gameManager.Defeat();
             marketAsset = 0;
             personAsset = 0;
+            gameManager.Defeat();
             return;
         }
         if (currentAsset < maxAssetLowerBound)
@@ -215,6 +215,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             anim.SetBool("isBurst", true);
             AudioSystem.instance.PlayBubbleBurstSound();
             AudioSystem.instance.PlayGameFailedSound();
+            gameManager.Defeat();
         }
     }
 

@@ -15,12 +15,14 @@ public class GameManager : MonoBehaviour
     public int emotionValueLT;
     public int assetLT;
     public int RoundNum;
+
     void Start()
     {
         RoundNum = 0;
         assetLT = uI_Asset.currentAsset;
         emotionValueLT = EmotionBar.instance.emotionValue;
     }
+
     public void NextRound()
     {
         settlementUI.ShowUI();
@@ -34,12 +36,17 @@ public class GameManager : MonoBehaviour
         RoundNum++;
     }
 
+
     public void Victory()
     {
+        settlementUI.ShowUI();
+        settlementUI.HideText();
         Debug.Log("victory");
     }
     public void Defeat()
     {
+        settlementUI.ShowUI();
+        settlementUI.HideText();
         Debug.Log("defeat");
     }
 }

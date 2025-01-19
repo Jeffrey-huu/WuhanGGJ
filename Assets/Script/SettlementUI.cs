@@ -24,6 +24,13 @@ public class SettlementUI : MonoBehaviour
         settlementUI.gameObject.SetActive(true);
         UpdateText();
     }
+
+    public void HideText()
+    {
+        text1.text = "";
+        text2.text = "";
+    }
+
     public void UpdateText()
     {
         int[] eventindexs = new int[2];
