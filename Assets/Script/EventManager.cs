@@ -58,7 +58,7 @@ public class EventManager : MonoBehaviour
         }
         Debug.Log(eventarr[eventindex].name + " add " + asset);
         string eventName = eventarr[eventindex].name;
-        if (eventName == "清洁能源革命")
+        if (eventName == "清洁能源革命" || eventName == "基因革命带来物种复兴")
         {
             Debug.Log(asset);
             if (asset >= 20)
@@ -70,15 +70,15 @@ public class EventManager : MonoBehaviour
                 uI_Asset.AddAsset(6 * asset);
             }
         }
-        else if (eventName == "全球共享经济网络")
+        else if (eventName == "全球共享经济网络" || eventName == "超智能经济管理系统")
         {
             ActivateBuff(5, (int)1.5 * asset);
         }
-        else if (eventName == "生物科技革命")
+        else if (eventName == "生物科技革命" || eventName == "大规模海洋清理项目")
         {
             ActivateBuff(3, (int)2.5 * asset);
         }
-        else if (eventName == "全球虚拟现实经济")
+        else if (eventName == "全球虚拟现实经济" || eventName == "虚拟身份认证全球化")
         {
             if (EmotionBar.instance.emotionValue < 60)
             {
@@ -89,11 +89,11 @@ public class EventManager : MonoBehaviour
                 EmotionBar.instance.AddEmotion((int)(0.1 * asset));
             }
         }
-        else if (eventName == "太空矿业的大规模发展")
+        else if (eventName == "太空矿业的大规模发展" || eventName == "脑机接口的普及")
         {
             bubbleController.AddAsset(5 * asset);
         }
-        else if (eventName == "AI叛变导致经济瘫痪")
+        else if (eventName == "AI叛变导致经济瘫痪" || eventName == "全球水资源战争")
         {
             if (EmotionBar.instance.emotionValue >= 80)
             {
@@ -105,15 +105,15 @@ public class EventManager : MonoBehaviour
 
             }
         }
-        else if (eventName == "大规模网络攻击")
+        else if (eventName == "大规模网络攻击" || eventName == "全面数字监控系统")
         {
             EmotionBar.instance.AddEmotion((int)(0.05 * asset));
         }
-        else if (eventName == "气候灾难导致粮食危机")
+        else if (eventName == "气候灾难导致粮食危机" || eventName == "量子计算引发金融系统崩溃")
         {
             bubbleController.AddAsset(2 * asset);
         }
-        else if (eventName == "基因武器的滥用")
+        else if (eventName == "基因武器的滥用" || eventName == "自动化导致的全球失业潮")
         {
             if (asset >= 20)
             {
@@ -124,7 +124,7 @@ public class EventManager : MonoBehaviour
                 EmotionBar.instance.DecreaseEmotion((int)(0.2 * asset));
             }
         }
-        else if (eventName == "外太空殖民失败的连锁反应")
+        else if (eventName == "外太空殖民失败的连锁反应" || eventName == "虚拟世界的沉迷与社会崩塌")
         {
             EmotionBar.instance.AddEmotion((int)(0.05 * asset));
         }
@@ -133,23 +133,23 @@ public class EventManager : MonoBehaviour
     public void EventOccur(int eventindex)
     {
         string eventName = eventarr[eventindex].name;
-        if (eventName == "AI叛变导致经济瘫痪")
+        if (eventName == "AI叛变导致经济瘫痪" || eventName == "全球水资源战争")
         {
             bubbleController.DecreaseMarket(100);
         }
-        else if (eventName == "大规模网络攻击")
+        else if (eventName == "大规模网络攻击" || eventName == "全面数字监控系统")
         {
             bubbleController.DecreaseMarket(100);
         }
-        else if (eventName == "气候灾难导致粮食危机")
+        else if (eventName == "气候灾难导致粮食危机" || eventName == "量子计算引发金融系统崩溃")
         {
             EmotionBar.instance.DecreaseEmotion(20);
         }
-        else if (eventName == "基因武器的滥用")
+        else if (eventName == "基因武器的滥用" || eventName == "自动化导致的全球失业潮")
         {
             EmotionBar.instance.AddEmotion(10);
         }
-        else if (eventName == "外太空殖民失败的连锁反应")
+        else if (eventName == "外太空殖民失败的连锁反应" || eventName == "虚拟世界的沉迷与社会崩塌")
         {
             bubbleController.DecreaseMarket((int)(bubbleController.marketAsset * 0.1));
         }
@@ -162,23 +162,23 @@ public class EventManager : MonoBehaviour
             return;
         }
         string eventName = eventarr[eventindex].name;
-        if (eventName == "AI叛变导致经济瘫痪")
+        if (eventName == "AI叛变导致经济瘫痪" || eventName == "全球水资源战争")
         {
             EmotionBar.instance.DecreaseEmotion(10);
         }
-        else if (eventName == "大规模网络攻击")
+        else if (eventName == "大规模网络攻击" || eventName == "全面数字监控系统")
         {
             EmotionBar.instance.DecreaseEmotion(10);
         }
-        else if (eventName == "气候灾难导致粮食危机")
+        else if (eventName == "气候灾难导致粮食危机" || eventName == "量子计算引发金融系统崩溃")
         {
             bubbleController.DecreaseAsset((int)(bubbleController.personAsset * 0.1));
         }
-        else if (eventName == "基因武器的滥用")
+        else if (eventName == "基因武器的滥用" || eventName == "自动化导致的全球失业潮")
         {
             bubbleController.DecreaseAsset((int)(bubbleController.marketAsset * 0.1));
         }
-        else if (eventName == "外太空殖民失败的连锁反应")
+        else if (eventName == "外太空殖民失败的连锁反应" || eventName == "虚拟世界的沉迷与社会崩塌")
         {
             EmotionBar.instance.DecreaseEmotion(10);
         }
