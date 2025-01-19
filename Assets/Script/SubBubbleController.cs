@@ -12,9 +12,13 @@ public class SubBubbleController : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
 
-    GameObject target; 
+    public GameObject target; 
 
     public float mergeDistance = 10f;
+    public int addAsset;
+
+    private int recordSubOneCollider = 0;
+
     
 
 
@@ -45,8 +49,46 @@ public class SubBubbleController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         additiveAsset = Random.Range(0, validRange);
-        transform.localScale = new Vector3(initialScale, initialScale, initialScale);
-        UpdateBubbleScale();
+    }
+
+    void CheckIsCollided()
+    {
+        if (target != null)
+        {
+            float distance = Vector3.Distance(transform.position, target.transform.position)
+                    -BubbleController.instance.GetRendererRadius();
+            Debug.Log($"Distance to target: {distance}");
+
+            // 你可以在这里添加其他逻辑，比如判断是否在某个范围内
+            if (distance <= mergeDistance)
+            {
+                Debug.Log("Target is within merge distance!");
+                Destroy(gameObject);
+                // 执行合并逻辑
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Target GameObject is not assigned.");
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "TargetBubble")
+        {
+            //第一次从左到右冲击，取消
+            if(gameObject.tag == "Bubble1" && recordSubOneCollider == 0)
+            {
+                recordSubOneCollider++;
+                return;
+            }
+            Debug.Log("Collision detected!");
+            Debug.Log("Target is within merge distance!");
+            BubbleController.instance.AddAsset(addAsset);
+            Destroy(gameObject);
+            // CheckIsCollided();
+        }
     }
 
     private void Update()
@@ -99,12 +141,12 @@ public class SubBubbleController : MonoBehaviour
         if (additiveScale > (maxScale - initialScale) / 2)
         {
             anim.speed = 1.5f;
-        } 
+        }
         else
         {
             anim.speed = 1f;
         }
-            
+
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(targetScale, targetScale, targetScale), lerpSpeed);
     }
 

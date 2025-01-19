@@ -9,10 +9,13 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
+    public GameManager gameManager;
     private SpriteRenderer sr;
     private Animator anim;
 
     public Slider progressBar;
+
+    static public BubbleController instance;
 
     [SerializeField] private float initialScale = 0.4f;
     [SerializeField] private int maxAssetLowerBound = 1000;
@@ -35,6 +38,14 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private bool isNearBurst = false;
 
+    public float radius ;
+
+    void Awake()
+    {
+        instance = this;
+        transform.localScale = new Vector3(initialScale, initialScale, initialScale);
+    }
+
 
     void Start()
     {
@@ -46,11 +57,15 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         Debug.Log(additiveAsset);
         UpdateBubbleScale();
 
+        transform.position = new Vector3(0, 0, 0);
+
         AudioSystem.instance.PlayBubbleIdleSound();
     }
 
     private void Update()
     {
+        //位置始终保持正中
+        transform.position = new Vector3(0, 0, 0);
         CheckIsNearBurst();
         UpdateBubbleScale();
 
@@ -65,6 +80,28 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             float scale = progressBar.value;
             SmallBubble.instance.SetScale(scale);
         }
+        GetRendererRadius();
+    }
+
+    public float GetRendererRadius()
+    {
+        if (sr == null)
+        {
+            sr = GetComponent<SpriteRenderer>();
+        }
+
+        if (sr != null)
+        {
+            Bounds bounds = sr.bounds;
+            Vector3 extents = bounds.extents;
+            radius = Mathf.Max(extents.x, extents.y, extents.z);
+        }
+        else
+        {
+            radius = 0f;
+            Debug.LogWarning("SpriteRenderer is not found on this GameObject.");
+        }
+        return radius;
     }
 
     private void AudioManage()
@@ -142,17 +179,24 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (additiveScale > (maxScale - initialScale) / 2)
         {
             anim.speed = 1.5f;
-        } 
+        }
         else
         {
             anim.speed = 1f;
         }
-            
+
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(targetScale, targetScale, targetScale), lerpSpeed);
     }
 
     private void CheckValid()
     {
+        if (currentAsset < 0)
+        {
+            gameManager.Defeat();
+            marketAsset = 0;
+            personAsset = 0;
+            return;
+        }
         if (currentAsset < maxAssetLowerBound)
         {
             return;
