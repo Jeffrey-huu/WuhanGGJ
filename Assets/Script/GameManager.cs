@@ -6,27 +6,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public SettlementUI settlementUI;
     public UI_Asset uI_Asset;
     public BubbleController bubbleController;
     public EventUIManager eventUIManager;
     public EventManager eventManager;
     public GameObject eventgroup;
+    public int emotionValueLT;
+    public int assetLT;
     public int RoundNum;
     void Start()
     {
         RoundNum = 0;
+        assetLT = uI_Asset.currentAsset;
+        emotionValueLT = EmotionBar.instance.emotionValue;
     }
     public void NextRound()
     {
-        uI_Asset.AddAsset(bubbleController.currentAsset / 5);
-        foreach (Transform _event in eventgroup.transform)
-        {
-            int eventindex = _event.GetComponent<EventController>().eventindex;
-            eventManager.EventEnd(eventindex);
-        }
+        settlementUI.ShowUI();
+        assetLT = uI_Asset.currentAsset;
+        emotionValueLT = EmotionBar.instance.emotionValue;
         Debug.Log("next turn");
+
         eventUIManager.GenerateEvent();
-        eventManager.BuffEffect();
         RoundNum++;
     }
 

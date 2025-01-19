@@ -182,8 +182,6 @@ public class EventManager : MonoBehaviour
         {
             EmotionBar.instance.DecreaseEmotion(10);
         }
-        eventarr[eventindex].isfinished = true;
-        finishedNum++;
     }
 
     public void BuffEffect()

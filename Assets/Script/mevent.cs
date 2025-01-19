@@ -8,4 +8,5 @@ public class mevent
     public bool isfinished;
     public string name;
     public string summary;
+    public string[] settlements = new string[2];
 }
