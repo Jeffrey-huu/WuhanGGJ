@@ -97,11 +97,11 @@ public class EventManager : MonoBehaviour
         {
             if (EmotionBar.instance.emotionValue >= 80)
             {
-                bubbleController.AddAsset((int)(0.8 * asset));
+                bubbleController.AddAsset((int)(0.4 * asset));
             }
             else
             {
-                bubbleController.AddMarket(10 * asset);
+                bubbleController.AddMarket(4 * asset);
 
             }
         }
