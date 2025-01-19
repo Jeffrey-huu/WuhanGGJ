@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettlementUI : MonoBehaviour
@@ -15,8 +16,15 @@ public class SettlementUI : MonoBehaviour
     public TextMeshProUGUI text2;
     public TextMeshProUGUI text_total;
     public GameObject eventgroup;
+
+    public GameObject failImg;
+    public GameObject SuccessImg;
+
+    public bool gameOver=false;
+
     void Awake()
     {
+        gameOver=false;
         settlementUI.gameObject.SetActive(false);
     }
     public void ShowUI()
@@ -25,10 +33,29 @@ public class SettlementUI : MonoBehaviour
         UpdateText();
     }
 
+    public void Fail()
+    {
+        HideText();
+        gameObject.SetActive(true);
+        failImg.SetActive(true);
+        SuccessImg.SetActive(false);
+        gameOver=true;
+    }
+
+    public void Succeed()
+    {
+        HideText();
+        gameObject.SetActive(true);
+        failImg.SetActive(false);
+        SuccessImg.SetActive(true);
+        gameOver=true;
+    }
+
     public void HideText()
     {
         text1.text = "";
         text2.text = "";
+        text_total.text = "";
     }
 
     public void UpdateText()
@@ -65,8 +92,13 @@ public class SettlementUI : MonoBehaviour
         string deltaAsset = (uI_Asset.currentAsset - gameManager.assetLT).ToString();
         text_total.text = $"虚妄之眼AI统计: \n世界情绪值变化: {deltaEmotionValue}, 个人资产变化: {deltaAsset}";
     }
+
     public void CloseUI()
     {
+        if(gameOver)
+        {
+            SceneManager.LoadSceneAsync(0);
+        }
         settlementUI.gameObject.SetActive(false);
         uI_Asset.AddAsset(bubbleController.currentAsset / 5);
         bubbleController.AddAsset(EmotionBar.instance.emotionValue * 3);

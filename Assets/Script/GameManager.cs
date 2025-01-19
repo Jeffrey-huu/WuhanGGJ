@@ -36,17 +36,16 @@ public class GameManager : MonoBehaviour
         RoundNum++;
     }
 
-
     public void Victory()
     {
         settlementUI.ShowUI();
-        settlementUI.HideText();
+        settlementUI.Succeed();
         Debug.Log("victory");
     }
     public void Defeat()
     {
         settlementUI.ShowUI();
-        settlementUI.HideText();
+        settlementUI.Fail();
         Debug.Log("defeat");
     }
 }
