@@ -74,30 +74,33 @@ public class UI_AssetBar : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void SendLongPressDuration(float duration)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-        if (hit.collider != null)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
+        foreach (var hit in hits)
         {
-            GameObject target = hit.collider.gameObject;
-            BubbleController bubbleController = target.GetComponent<BubbleController>();
-            if (bubbleController != null)
+            if (hit.collider != null)
             {
-                AudioSystem.instance.PlayAssetPutDownSound();
-                float useScale = duration / maxPressDuration;
-                int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
-                usedAsset = Mathf.Clamp(usedAsset, 0, asset_ui.currentAsset);
-                bubbleController.AddAsset(usedAsset);
-                asset_ui.DecreaseAsset(usedAsset);
-            }
-            EventController eventController = target.GetComponent<EventController>();
-            if (eventController != null)
-            {
-                AudioSystem.instance.PlayAssetPutDownSound();
-                int eventindex = eventController.eventindex;
-                float useScale = duration / maxPressDuration;
-                int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
-                usedAsset = Mathf.Clamp(usedAsset, 0, asset_ui.currentAsset);
-                eventManager.AddAssetToEvent(eventindex, usedAsset);
-                asset_ui.DecreaseAsset(usedAsset);
+                GameObject target = hit.collider.gameObject;
+                BubbleController bubbleController = target.GetComponent<BubbleController>();
+                if (bubbleController != null)
+                {
+                    AudioSystem.instance.PlayAssetPutDownSound();
+                    float useScale = duration / maxPressDuration;
+                    int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
+                    usedAsset = Mathf.Clamp(usedAsset, 0, asset_ui.currentAsset);
+                    bubbleController.AddAsset(usedAsset);
+                    asset_ui.DecreaseAsset(usedAsset);
+                }
+                EventController eventController = target.GetComponent<EventController>();
+                if (eventController != null)
+                {
+                    AudioSystem.instance.PlayAssetPutDownSound();
+                    int eventindex = eventController.eventindex;
+                    float useScale = duration / maxPressDuration;
+                    int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
+                    usedAsset = Mathf.Clamp(usedAsset, 0, asset_ui.currentAsset);
+                    eventManager.AddAssetToEvent(eventindex, usedAsset);
+                    asset_ui.DecreaseAsset(usedAsset);
+                }
             }
         }
     }
