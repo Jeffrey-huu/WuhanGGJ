@@ -39,8 +39,6 @@ public class SubBubbleController : MonoBehaviour
     private float lerpSpeed = 0.1f;
     private int additiveAsset;
 
-
-
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -88,74 +86,9 @@ public class SubBubbleController : MonoBehaviour
         // UpdateBubbleScale();
     }
 
-    private void AudioManage()
-    {
-        if (currentAsset >= maxAssetLowerBound)
-        {
-            AudioSystem.instance.PlayBubbleNearBurstSound();
-        }
-        else if (currentAsset >= maxAssetLowerBound / 2)
-        {
-            AudioSystem.instance.PlayBubbleFastIdleSound();
-        }
-        else
-        {
-            AudioSystem.instance.PlayBubbleIdleSound();
-        }
-    }
-
     private void BubbleAnimationTrigger()
     {
         Destroy(gameObject);
-    }
-
-    public void AddAsset(int num)
-    {
-        personAsset += num;
-        AudioManage();
-        CheckValid();
-    }
-
-    public void AddMarket(int num)
-    {
-        marketAsset += num;
-        CheckValid();
-    }
-
-    private void UpdateBubbleScale()
-    {
-        float additiveScale = (float)currentAsset / maxAssetLowerBound * (maxScale - initialScale);
-        float targetScale = additiveScale + initialScale;
-
-        if (targetScale > maxScale)
-            targetScale = maxScale;
-
-        if (additiveScale > (maxScale - initialScale) / 2)
-        {
-            anim.speed = 1.5f;
-        }
-        else
-        {
-            anim.speed = 1f;
-        }
-
-        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(targetScale, targetScale, targetScale), lerpSpeed);
-    }
-
-    private void CheckValid()
-    {
-        if (currentAsset < maxAssetLowerBound)
-        {
-            return;
-        }
-
-        Debug.Log(currentAsset);
-
-        if (currentAsset > maxAssetLowerBound + additiveAsset)
-        {
-            anim.SetBool("isBurst", true);
-            AudioSystem.instance.PlayGameFailedSound();
-        }
     }
 
     //平移到目标点
@@ -163,41 +96,5 @@ public class SubBubbleController : MonoBehaviour
     {
         destination.z = 0;
         transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * 5);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isPressed = false;
-        isEnter = false;
-        longPressDuration = Time.time - pressStartTime;
-        longPressDuration = Mathf.Clamp(longPressDuration, 0, maxPressDuration);
-    }
-
-    protected virtual void OnLongPress(float duration)
-    {
-        SendLongPressDuration(duration);
-    }
-
-    private void SendLongPressDuration(float duration)
-    {
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-        pointerEventData.position = Input.mousePosition;
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData, results);
-        if (results.Count > 0)
-        {
-            foreach (RaycastResult result in results)
-            {
-                GameObject target = result.gameObject;
-                var assetBar = target.GetComponent<UI_AssetBar>();
-                if (assetBar != null)
-                {
-                    float useScale = duration / maxPressDuration;
-                    int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
-                    usedAsset = Mathf.Clamp(usedAsset, 0, personAsset);
-                    assetBar.asset_ui.AddAsset(usedAsset);
-                }
-            }
-        }
     }
 }

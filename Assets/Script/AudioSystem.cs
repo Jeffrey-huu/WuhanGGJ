@@ -143,6 +143,10 @@ public class AudioSystem : MonoBehaviour
     }
     public void StopPlayLongPressSound()
     {
+        if (sfxSource.clip != longPress)
+        {
+            return;
+        }
         StopPlaySound(sfxSource);
     }
 
