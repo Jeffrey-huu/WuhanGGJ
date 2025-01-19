@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7138147890812640386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5710150414047765764}
+  - component: {fileID: 3821406272550468258}
+  m_Layer: 0
+  m_Name: AudioSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5710150414047765764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138147890812640386}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.42, y: -0.69, z: -9.952969}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3821406272550468258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138147890812640386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c8a437f1fa9324b80e75b8e9158be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  introSound: {fileID: 8300000, guid: c0c7d739516be1a4fbab9f1bdb1c4041, type: 3}
+  bubbleIdleSound: {fileID: 8300000, guid: ea8c347e53b91ed459e2fe6010b2aa04, type: 3}
+  bubbleFastIdleSound: {fileID: 8300000, guid: 423c715115ab72747a5f3ed26174062c, type: 3}
+  bubbleNearBurstSound: {fileID: 8300000, guid: b271a4876af9fc248aceb586b1e155f4, type: 3}
+  successSound: {fileID: 8300000, guid: 81e6eaf7dd9a82d49bbd632d67bfa660, type: 3}
+  failSound: {fileID: 8300000, guid: 9a4ce1a1876794246a7d8308e5ad5d38, type: 3}
+  nextTurn: {fileID: 8300000, guid: 3e41a8c73f435894ca4403a37a390107, type: 3}
+  gameBegin: {fileID: 8300000, guid: f9eb1d8a96383ae45af9df4d80a025e2, type: 3}
+  longPress: {fileID: 8300000, guid: d6d210a8d969dde4cb78aeb4d4a4ef00, type: 3}
+  assetPutDown: {fileID: 8300000, guid: 0c34c73ef95b23e48b84e3dee07bd378, type: 3}
+  roundFinish: {fileID: 8300000, guid: 5a7ab55d964e5c14c883155694c3ff53, type: 3}
+  bubbleBurst: {fileID: 8300000, guid: 6244d06a9939aed46bb86ae6732d1abb, type: 3}
+  musicVolume: 0.337
+  sfxVolume: 1

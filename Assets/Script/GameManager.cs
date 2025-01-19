@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     }
     public void NextRound()
     {
+        AudioSystem.instance.PlayNextTurnSound();
         uI_Asset.AddAsset(bubbleController.currentAsset / 5);
         foreach (Transform _event in eventgroup.transform)
         {
