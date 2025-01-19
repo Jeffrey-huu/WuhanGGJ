@@ -15,6 +15,8 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public Slider progressBar;
 
+    static public BubbleController instance;
+
     [SerializeField] private float initialScale = 0.4f;
     [SerializeField] private int maxAssetLowerBound = 1000;
     [SerializeField] private int validRange = 100;
@@ -36,6 +38,14 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     private bool isNearBurst = false;
 
+    public float radius ;
+
+    void Awake()
+    {
+        instance = this;
+        transform.localScale = new Vector3(initialScale, initialScale, initialScale);
+    }
+
 
     void Start()
     {
@@ -47,13 +57,23 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         Debug.Log(additiveAsset);
         UpdateBubbleScale();
 
+        transform.position = new Vector3(0, 0, 0);
+
         AudioSystem.instance.PlayBubbleIdleSound();
     }
 
     private void Update()
     {
+        //始终维持位置，防止rigidBody作怪
+        transform.position = new Vector3(0, 0, 0);
+
         CheckIsNearBurst();
         UpdateBubbleScale();
+
+        if(currentAsset>200)
+        {
+            SubBubbleController.BreakAble=true;
+        }
 
         if (isPressed)
         {
@@ -66,6 +86,28 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             float scale = progressBar.value;
             SmallBubble.instance.SetScale(scale);
         }
+        GetRendererRadius();
+    }
+
+    public float GetRendererRadius()
+    {
+        if (sr == null)
+        {
+            sr = GetComponent<SpriteRenderer>();
+        }
+
+        if (sr != null)
+        {
+            Bounds bounds = sr.bounds;
+            Vector3 extents = bounds.extents;
+            radius = Mathf.Max(extents.x, extents.y, extents.z);
+        }
+        else
+        {
+            radius = 0f;
+            Debug.LogWarning("SpriteRenderer is not found on this GameObject.");
+        }
+        return radius;
     }
 
     private void AudioManage()
@@ -171,6 +213,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         if (currentAsset > maxAssetLowerBound + additiveAsset)
         {
             anim.SetBool("isBurst", true);
+            AudioSystem.instance.PlayBubbleBurstSound();
             AudioSystem.instance.PlayGameFailedSound();
         }
     }
@@ -184,6 +227,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        AudioSystem.instance.PlayLongPressSound();
         isPressed = true;
         isEnter = true;
         pressStartTime = Time.time;
@@ -204,6 +248,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        AudioSystem.instance.StopPlayLongPressSound();
         isPressed = false;
         isEnter = false;
         longPressDuration = Time.time - pressStartTime;
@@ -229,6 +274,7 @@ public class BubbleController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
                 var assetBar = target.GetComponent<UI_AssetBar>();
                 if (assetBar != null)
                 {
+                    AudioSystem.instance.PlayAssetPutDownSound();
                     float useScale = duration / maxPressDuration;
                     int usedAsset = Mathf.RoundToInt(useScale * maxAssetCanUseOneTrans);
                     usedAsset = Mathf.Clamp(usedAsset, 0, personAsset);

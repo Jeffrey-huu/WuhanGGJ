@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class BeginPlayTrigger : MonoBehaviour
+public class EnterAnimTrigger : MonoBehaviour
 {
-    public GameObject anim;
-
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +22,8 @@ public class BeginPlayTrigger : MonoBehaviour
         
     }
 
-    void OnMouseDown()
+    public void DestroySelf()
     {
-        Debug.Log("BeginPlayTrigger OnMouseDown");
-        AudioSystem.instance.PlayGameBeginSound();
-        anim.SetActive(true);
+        Destroy(gameObject);
     }
 }

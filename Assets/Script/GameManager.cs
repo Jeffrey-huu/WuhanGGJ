@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
         settlementUI.ShowUI();
         assetLT = uI_Asset.currentAsset;
         emotionValueLT = EmotionBar.instance.emotionValue;
+
+        AudioSystem.instance.PlayNextTurnSound();
         Debug.Log("next turn");
 
         eventUIManager.GenerateEvent();
